@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="drawPixels.cpp">
+    <ClCompile Include="..\Code Base\drawPixels.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,0 +1,59 @@
+﻿Build started 11/9/2011 11:39:37 AM.
+     1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Unit Tests\Unit Tests.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Unit Tests.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:safe /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\DefaultTest.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"c:\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt UnitTest1.cpp /clr:nostdlib 
+         UnitTest1.cpp
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\vadefs.h(85): error C4956: 'va_list *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\vadefs.h(86): error C4956: 'va_list *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\vadefs.h(86): error C4956: 'void *(va_list *,...)' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\vadefs.h(87): error C4956: 'va_list *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(543): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(543): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(543): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(550): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(550): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(550): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1955): error C4956: 'threadlocaleinfostruct *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1956): error C4956: 'threadmbcinfostruct *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1960): error C4959: cannot define unmanaged struct 'localeinfo_struct' in /clr:safe because accessing its members yields unverifiable code
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1963): error C4956: 'localeinfo_struct *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1966): error C4959: cannot define unmanaged struct 'tagLC_ID' in /clr:safe because accessing its members yields unverifiable code
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1970): error C4956: 'tagLC_ID *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1975): error C4959: cannot define unmanaged struct 'threadlocaleinfostruct' in /clr:safe because accessing its members yields unverifiable code
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1981): error C4959: cannot define unmanaged struct 'threadlocaleinfostruct::$UnnamedClass$0xcd3a8da9$1$' in /clr:safe because accessing its members yields unverifiable code
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1982): error C4956: 'char *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1983): error C4956: 'wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1984): error C4956: 'int *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1985): error C4956: 'int *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1989): error C4956: 'int *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1990): error C4956: 'int *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1991): error C4956: 'int *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1992): error C4956: 'lconv *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1993): error C4956: 'int *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1994): error C4956: 'unsigned short *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1995): error C4956: 'const unsigned short *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1996): error C4956: 'const unsigned char *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1997): error C4956: 'const unsigned char *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\crtdefs.h(1998): error C4956: '__lc_time_data *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\assert.h(28): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>c:\Program Files\Microsoft Visual Studio 10.0\VC\include\assert.h(28): error C4956: 'const wchar_t *' : this type is not verifiable
+     1>C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base\Vector3.h(2): error C4959: cannot define unmanaged class 'Vector3' in /clr:safe because accessing its members yields unverifiable code
+     1>C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base\Vector3.h(14): error C4956: 'const Vector3 &' : this type is not verifiable
+     1>C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base\Vector3.h(15): error C4956: 'const Vector3 &' : this type is not verifiable
+     1>C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base\Vector3.h(17): error C4956: 'const Vector3 &' : this type is not verifiable
+     1>C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base\Vector3.h(18): error C4956: 'const Vector3 &' : this type is not verifiable
+     1>C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base\Vector3.h(18): error C4956: 'Vector3 &(const Vector3 &)' : this type is not verifiable
+     1>UnitTest1.cpp(60): error C3383: 'operator new' is not supported with /clr:safe
+     1>UnitTest1.cpp(62): error C4958: '[' : pointer arithmetic is not verifiable
+     1>UnitTest1.cpp(63): error C4958: '[' : pointer arithmetic is not verifiable
+     1>UnitTest1.cpp(64): error C4958: '[' : pointer arithmetic is not verifiable
+     1>Done Building Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Unit Tests\Unit Tests.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.87
