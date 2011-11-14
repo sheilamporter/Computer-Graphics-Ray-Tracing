@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code Base\Collisions.cpp" />
+    <ClCompile Include="..\Code Base\Rays.cpp" />
     <ClCompile Include="..\Code Base\RayTraceDemo.cpp" />
     <ClCompile Include="..\Code Base\Vector3.cpp" />
   </ItemGroup>

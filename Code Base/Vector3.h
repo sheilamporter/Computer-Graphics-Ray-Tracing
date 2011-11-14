@@ -14,6 +14,7 @@ public:
 	Vector3 operator+(const Vector3 &a) const;
 	Vector3 operator-(const Vector3 &a) const;
 	Vector3 operator*(float s) const;
-	Vector3 operator*(const Vector3 &a) const;
-	Vector3 &operator*=(const Vector3 &a);
+	float operator*(const Vector3 &a) const;
+	Vector3 &operator*=(float s);
+	bool operator==(const Vector3 &a);
 };

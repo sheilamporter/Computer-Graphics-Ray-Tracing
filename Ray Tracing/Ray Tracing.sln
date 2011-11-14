@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Unit Tests", "..\Unit Tests\Unit Tests.vcxproj", "{878E1068-2919-4D55-A547-A6F6BB1E667F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Ray Tracing.vsmdi
@@ -29,6 +31,10 @@ Global
 		{55014966-D60E-4E0A-9009-88719BFDC2AC}.Debug|Win32.Build.0 = Debug|Win32
 		{55014966-D60E-4E0A-9009-88719BFDC2AC}.Release|Win32.ActiveCfg = Release|Win32
 		{55014966-D60E-4E0A-9009-88719BFDC2AC}.Release|Win32.Build.0 = Release|Win32
+		{878E1068-2919-4D55-A547-A6F6BB1E667F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{878E1068-2919-4D55-A547-A6F6BB1E667F}.Debug|Win32.Build.0 = Debug|Win32
+		{878E1068-2919-4D55-A547-A6F6BB1E667F}.Release|Win32.ActiveCfg = Release|Win32
+		{878E1068-2919-4D55-A547-A6F6BB1E667F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

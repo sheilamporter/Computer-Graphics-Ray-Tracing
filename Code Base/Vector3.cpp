@@ -50,15 +50,20 @@ Vector3 Vector3::operator*(float s) const
 	return Vector3(v[0]*s,v[1]*s,v[2]*s);
 }
 
-Vector3 Vector3::operator*(const Vector3 &a) const
+float Vector3::operator*(const Vector3 &a) const
 {
 	return v[0]*a.v[0] + v[1]*a.v[1] + v[2]*a.v[2];
 }
 
-Vector3 &Vector3::operator*=(const Vector3 &a)
+Vector3 &Vector3::operator*=(float s)
 {
-	(*this) = (*this) * a;
+	(*this) = (*this) * s;
 	return (*this);
+}
+
+bool Vector3::operator==(const Vector3 &a)
+{
+	return (v[0] == a.v[0]) && (v[1] == a.v[1]) && (v[2] == a.v[2]);
 }
 
 Vector3 crossProduct(const Vector3 &a, const Vector3 &b)
