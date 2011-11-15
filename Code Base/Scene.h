@@ -1,10 +1,14 @@
+#ifndef _SCENE_H_
+#define _SCENE_H_
+
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
 #include <list>
-#include <object.h>
-#include <camera.h>
-#include <Vector3.h>
+
+#include "Object.h"
+#include "Camera.h"
+#include "Vector3.h"
 
 #ifdef __APPLE__
 #  include <GLUT/glut.h>
@@ -38,3 +42,5 @@ class Scene
             //http://www.cplusplus.com/reference/stl/list/sort/
         }
 }
+
+#endif

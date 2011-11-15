@@ -1,15 +1,11 @@
+#ifndef _CAMERA_H_
+#define _CAMERA_H_
+
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
-#include <object.h>
-#include <Vector3.h>
 
-#ifdef __APPLE__
-#  include <GLUT/glut.h>
-#else
-#  include <GL/glut.h>
-#endif
-
+#include "Vector3.h"
 
 class Camera
 {
@@ -22,3 +18,5 @@ class Camera
         Camera(float posX, float posY, float posZ, float normX, float normY, float normZ) : position(posx, posY, posZ), normal(normX, normY, normZ) {}
     
 }
+
+#endif

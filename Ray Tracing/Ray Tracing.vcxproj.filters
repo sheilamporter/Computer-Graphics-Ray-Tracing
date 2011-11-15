@@ -32,5 +32,20 @@
     <ClInclude Include="..\Code Base\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Code Base\Collisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code Base\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code Base\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code Base\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code Base\Rays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

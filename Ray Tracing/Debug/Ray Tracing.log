@@ -1,7 +1,7 @@
-﻿Build started 11/14/2011 5:02:20 PM.
+﻿Build started 11/15/2011 2:40:33 AM.
      1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Ray Tracing.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\Ray Tracing.unsuccessfulbuild".
+         Creating "Debug\Ray Tracing.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
@@ -24,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.10
+Time Elapsed 00:00:01.63

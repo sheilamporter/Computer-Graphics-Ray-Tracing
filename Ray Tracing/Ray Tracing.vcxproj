@@ -17,6 +17,11 @@
     <ClCompile Include="..\Code Base\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Code Base\Camera.h" />
+    <ClInclude Include="..\Code Base\Collisions.h" />
+    <ClInclude Include="..\Code Base\Object.h" />
+    <ClInclude Include="..\Code Base\Rays.h" />
+    <ClInclude Include="..\Code Base\Scene.h" />
     <ClInclude Include="..\Code Base\Vector3.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

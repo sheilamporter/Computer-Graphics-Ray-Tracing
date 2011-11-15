@@ -1,3 +1,6 @@
+#ifndef _VECTOR3_H_
+#define _VECTOR3_H_
+
 class Vector3
 {
 public:
@@ -7,6 +10,7 @@ public:
 	Vector3(float nw);
 	Vector3(float nx, float ny, float nz);
 	Vector3(float nx, float ny, float nz, float nw);
+	Vector3(const Vector3 &a);
 
 	float magnitude() const;
 	Vector3 normal() const;
@@ -18,3 +22,5 @@ public:
 	Vector3 &operator*=(float s);
 	bool operator==(const Vector3 &a);
 };
+
+#endif
