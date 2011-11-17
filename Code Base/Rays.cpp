@@ -1,6 +1,11 @@
 #include <math.h>
+#include <list>
 #include "Vector3.h"
 #include "Rays.h"
+#include "Objects.h"
+#include "Collisions.h"
+
+using namespace std;
 
 #define IMPLEMENTATION 1
 
@@ -18,9 +23,9 @@ Ray::Ray(Vector3* o, Vector3*d, int n)
 	depth = n;
 }
 
-Collision* Ray::getFirstCollision(list<Object*> scene)
+Collision* Ray::getFirstCollision(list<Object*>* scene)
 {
-	list<Collision*> collisions;
+	list<Collision*>* collisions = new list<Collision*>();
 
 	// for each object in the scene
 	// call the object's collision test with ray
@@ -32,7 +37,7 @@ Collision* Ray::getFirstCollision(list<Object*> scene)
 	// sort the list by increasing distance, return the first element
 }
 
-Vector3* Ray::cast(list<Object*> scene, list<Light*> lights)
+Vector3* Ray::cast(list<Object*>* scene, list<Light*>* lights)
 {
 	Collision *col = getFirstCollision(scene);
 
@@ -48,7 +53,7 @@ Vector3* Ray::cast(list<Object*> scene, list<Light*> lights)
 	return NULL;
 }
 
-Vector3* Ray::castFeeler(list<Object*> scene, Light* light)
+Vector3* Ray::castFeeler(list<Object*>* scene, Light* light)
 {
 	Collision* col = getFirstCollision(scene);
 	

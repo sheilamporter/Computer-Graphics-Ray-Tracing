@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Code Base\Collisions.cpp" />
+    <ClCompile Include="..\Code Base\Objects.cpp" />
     <ClCompile Include="..\Code Base\Rays.cpp" />
     <ClCompile Include="..\Code Base\RayTraceDemo.cpp" />
     <ClCompile Include="..\Code Base\Vector3.cpp" />
@@ -19,10 +19,17 @@
   <ItemGroup>
     <ClInclude Include="..\Code Base\Camera.h" />
     <ClInclude Include="..\Code Base\Collisions.h" />
-    <ClInclude Include="..\Code Base\Object.h" />
+    <ClInclude Include="..\Code Base\Objects.h" />
     <ClInclude Include="..\Code Base\Rays.h" />
     <ClInclude Include="..\Code Base\Scene.h" />
     <ClInclude Include="..\Code Base\Vector3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{83EC6AB4-0E30-4C44-B42F-2B60FFB70F0E}</ProjectGuid>

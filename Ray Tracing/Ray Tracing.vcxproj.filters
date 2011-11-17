@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Code Base\Collisions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Code Base\RayTraceDemo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,6 +22,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Code Base\Rays.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Code Base\Objects.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,13 +38,13 @@
     <ClInclude Include="..\Code Base\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Code Base\Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Code Base\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\Code Base\Rays.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Code Base\Objects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

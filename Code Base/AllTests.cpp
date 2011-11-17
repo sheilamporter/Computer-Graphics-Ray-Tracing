@@ -19,62 +19,62 @@ bool approx_equal(double x, double y)
 
 void testVector3Magnitude()
 {
-	Vector3 v = Vector3(3.0f, 4.0f, 0.0f);
-	float mag = v.magnitude();
+	Vector3* v = new Vector3(3.0f, 4.0f, 0.0f);
+	float mag = v->magnitude();
 	assert(approx_equal(mag, 5.0f));
 
-	v = Vector3(-1.0f, 0.0f, 0.0f);
-	mag = v.magnitude();
+	v = new Vector3(-1.0f, 0.0f, 0.0f);
+	mag = v->magnitude();
 	assert(approx_equal(mag, 1.0f));
 
-	v = Vector3(0.0f, 0.0f, 0.0f);
-	mag = v.magnitude();
+	v = new Vector3(0.0f, 0.0f, 0.0f);
+	mag = v->magnitude();
 	assert(approx_equal(mag, 0.0f));
 }
 
 void testVector3Add()
 {
-	Vector3 a = Vector3(1.0f, 2.0f, 3.0f);
-	Vector3 b = Vector3(2.0f, -1.0f, 4.0f);
+	Vector3* a = new Vector3(1.0f, 2.0f, 3.0f);
+	Vector3* b = new Vector3(2.0f, -1.0f, 4.0f);
 
-	Vector3 result = a + b;
-	assert(result == Vector3(3.0f, 1.0f, 7.0f));
+	Vector3* result = (*a) + b;
+	assert((*result) == new Vector3(3.0f, 1.0f, 7.0f));
 }
 
 void testVector3Subtract()
 {
-	Vector3 a = Vector3(1.0f, 2.0f, 3.0f);
-	Vector3 b = Vector3(2.0f, -1.0f, 4.0f);
+	Vector3* a = new Vector3(1.0f, 2.0f, 3.0f);
+	Vector3* b = new Vector3(2.0f, -1.0f, 4.0f);
 
-	Vector3 result = a - b;
-	assert(result == Vector3(-1.0f, 3.0f, -1.0f));
+	Vector3* result = (*a) - b;
+	assert(*result == new Vector3(-1.0f, 3.0f, -1.0f));
 }
 
 void testVector3Dot()
 {
-	Vector3 a = Vector3(1.0f, 2.0f, 3.0f);
-	Vector3 b = Vector3(-1.0f, 4.0f, -2.0f);
+	Vector3* a = new Vector3(1.0f, 2.0f, 3.0f);
+	Vector3* b = new Vector3(-1.0f, 4.0f, -2.0f);
 
-	float result = a * b;
+	float result = (*a) * b;
 	assert(approx_equal(result, 1.0f));
 }
 
 void testVector3Scale()
 {
-	Vector3 a = Vector3(1.0f, 1.0f, 1.0f);
+	Vector3* a = new Vector3(1.0f, 1.0f, 1.0f);
 	float scale = 5.0f;
 
-	a *= scale;
-	assert(a == Vector3(5.0f, 5.0f, 5.0f));
+	(*a) *= scale;
+	assert(*a == new Vector3(5.0f, 5.0f, 5.0f));
 }
 
 void testVector3Normal()
 {
-	Vector3 a = Vector3(5.0f, 0.0f, 0.0f);
-	Vector3 normal = a.normal();
+	Vector3* a = new Vector3(5.0f, 0.0f, 0.0f);
+	Vector3* normal = a->normal();
 
-	assert(approx_equal(normal.magnitude(), 1.0f));
-	assert(normal == Vector3(1.0f, 0.0f, 0.0f));
+	assert(approx_equal(normal->magnitude(), 1.0f));
+	assert(*normal == new Vector3(1.0f, 0.0f, 0.0f));
 }
 
 void main(int argc, char* argv)

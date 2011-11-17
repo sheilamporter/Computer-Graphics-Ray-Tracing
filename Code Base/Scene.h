@@ -6,10 +6,6 @@
 #include <cmath>
 #include <list>
 
-#include "Object.h"
-#include "Camera.h"
-#include "Vector3.h"
-
 #ifdef __APPLE__
 #  include <GLUT/glut.h>
 #else
@@ -18,22 +14,32 @@
 
 using namespace std;
 
+class Object;
+class Camera;
+class Vector3;
+
 class Scene
 {        
     public:
-        list<Object> objects;
+        list<Object*>* objects;
+		list<Light*>* lights;
     
         Scene() { }
         
-        Scene(list<Object> sceneObjects)
+        Scene(list<Object*>* sceneObjects)
         {
             objects = sceneObjects;
         }
         
-        void AddObject(Object newObject)
+        void AddObject(Object* newObject)
         {
-            objects.push_back(newObject);
+            objects->push_back(newObject);
         }
+
+		void AddLight(Light* newLight)
+		{
+			lights->push_back(newLight);
+		}
 
         void Sort(/*Vector3 cameraPosition?*/)
         {

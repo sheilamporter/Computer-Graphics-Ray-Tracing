@@ -1,12 +1,12 @@
 #ifndef _COLLISIONS_H_
 #define _COLLISIONS_H_
 
-#include "Vector3.h"
+class Vector3;
 
 struct Collision {
-	Vector3 point;
-	Vector3 normal;
-	Vector3 color;
+	Vector3* point;
+	Vector3* normal;
+	Vector3* color;
 	float distance;
 };
 
