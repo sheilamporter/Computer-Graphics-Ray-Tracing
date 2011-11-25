@@ -1,27 +1,43 @@
-﻿Build started 11/17/2011 6:45:05 PM.
-     1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Unit Tests\Unit Tests.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
-         Creating "Debug\Unit Tests.unsuccessfulbuild" because "AlwaysCreate" was specified.
+﻿Build started 11/25/2011 1:39:29 AM.
+     1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Unit Tests\Unit Tests.vcxproj" on node 3 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\Unit Tests.lastbuildstate".
+       InitializeBuildStatus:
+         Touching "Debug\Unit Tests.unsuccessfulbuild".
        ClCompile:
-         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\Code Base\AllTests.cpp"
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\Code Base\AllTests.cpp" "..\Code Base\Collisions.cpp" "..\Code Base\Objects.cpp" "..\Code Base\Rays.cpp" "..\Code Base\Vector3.cpp"
+         Vector3.cpp
+         Rays.cpp
+         Objects.cpp
+         Collisions.cpp
          AllTests.cpp
+         Generating Code...
        ManifestResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\Unit Tests.exe.embed.manifest.res" "Debug\Unit Tests_manifest.rc" 
        Link:
          c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Unit Tests.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Unit Tests.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Unit Tests.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Unit Tests.lib" /MACHINE:X86 "Debug\Unit Tests.exe.embed.manifest.res"
          Debug\AllTests.obj
+         Debug\Collisions.obj
+         Debug\Objects.obj
+         Debug\Rays.obj
          Debug\Vector3.obj
        Manifest:
+         Deleting file "Debug\Unit Tests.exe.embed.manifest".
          C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\Unit Tests.exe.embed.manifest" /manifest "Debug\Unit Tests.exe.intermediate.manifest"
-         All outputs are up-to-date.
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\Unit Tests.exe.embed.manifest.res" "Debug\Unit Tests_manifest.rc" 
        LinkEmbedManifest:
-         All outputs are up-to-date.
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Unit Tests.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Unit Tests.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Unit Tests.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Unit Tests.lib" /MACHINE:X86 "Debug\Unit Tests.exe.embed.manifest.res"
+         Debug\AllTests.obj
+         Debug\Collisions.obj
+         Debug\Objects.obj
+         Debug\Rays.obj
+         Debug\Vector3.obj
          Unit Tests.vcxproj -> C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Unit Tests.exe
        FinalizeBuildStatus:
          Deleting file "Debug\Unit Tests.unsuccessfulbuild".
          Touching "Debug\Unit Tests.lastbuildstate".
-     1>Done Building Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Unit Tests\Unit Tests.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Unit Tests\Unit Tests.vcxproj" (rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.08
+Time Elapsed 00:00:04.14

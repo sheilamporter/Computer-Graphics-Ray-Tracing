@@ -11,7 +11,7 @@ struct Collision;
 
 using namespace std;
 
-public class Ray
+class Ray
 {
 public:
 	Vector3* origin;
@@ -20,9 +20,10 @@ public:
 
 	Ray(Vector3* o, Vector3* d);
 	Ray(Vector3* o, Vector3* d, int n);
+	~Ray();
 
 	Collision* getFirstCollision(list<Object*>* scene);
-	Vector3* cast(list<Object*>* scene, list<Light*>* lights);
+	void cast(list<Object*>* scene, list<Light*>* lights);
 	Vector3* castFeeler(list<Object*>* scene, Light* light);
 
 private:

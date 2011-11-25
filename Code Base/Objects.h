@@ -35,6 +35,7 @@ public:
     Object(float x, float y, float z);
 	Object(Vector3* pos, Vector3* clr);
 	Object(float px, float py, float pz, float cx, float cy, float cz);
+	~Object();
 
 	virtual Collision* collideWithRay(Ray* ray) = 0; // override this for per-object-type collision with ray
 };
@@ -51,8 +52,8 @@ public:
     Sphere(float posX, float posY, float posZ, float r);
     Sphere(Vector3* pos, float r, Vector3* clr);
     Sphere(float posX, float posY, float posZ, float r, float clrX, float clrY, float clrZ);
-        
-    //TODO: function to test for collisions - takes a ray, returns a Collision
+	~Sphere();
+    
 	Collision* collideWithRay(Ray* ray);
         
 };

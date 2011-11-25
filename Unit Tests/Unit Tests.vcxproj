@@ -74,10 +74,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Code Base\Collisions.h" />
+    <ClInclude Include="..\Code Base\Objects.h" />
+    <ClInclude Include="..\Code Base\Rays.h" />
     <ClInclude Include="..\Code Base\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Code Base\AllTests.cpp" />
+    <ClCompile Include="..\Code Base\Collisions.cpp" />
+    <ClCompile Include="..\Code Base\Objects.cpp" />
+    <ClCompile Include="..\Code Base\Rays.cpp" />
     <ClCompile Include="..\Code Base\Vector3.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,4 @@
-﻿Build started 11/15/2011 1:48:56 AM.
+﻿Build started 11/25/2011 1:39:26 AM.
      1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\OpenGL Tests\OpenGL Tests.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug\OpenGL Tests.lastbuildstate".
@@ -7,7 +7,7 @@
        ClCompile:
          c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt "..\Code Base\drawPixels.cpp"
          drawPixels.cpp
-     1>c:\users\todisk\desktop\computer graphics\ray tracing project\computer-graphics-ray-tracing\code base\drawpixels.cpp(87): warning C4229: anachronism used : modifiers on data are ignored
+     1>c:\users\todisk\desktop\computer graphics\ray tracing project\computer-graphics-ray-tracing\code base\drawpixels.cpp(93): warning C4229: anachronism used : modifiers on data are ignored
        ManifestResourceCompile:
          C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\OpenGL Tests.exe.embed.manifest.res" "Debug\OpenGL Tests_manifest.rc" 
        Link:
@@ -28,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.49
+Time Elapsed 00:00:02.85

@@ -16,6 +16,6 @@ class Camera
         Camera();
         Camera(Vector3* pos, Vector3* norm);
         Camera(float posX, float posY, float posZ, float normX, float normY, float normZ);
-}
+};
 
 #endif

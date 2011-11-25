@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "Scene.h"
+#include "Objects.h"
+#include "Rays.h"
+#include "Camera.h"
+#include "Vector3.h"
+
 #ifdef __APPLE__
 #  include <GLUT/glut.h>
 #else
@@ -12,6 +18,7 @@ using namespace std;
 
 int width = 0;
 int height = 0;
+Scene* scene = new Scene();
 
 // Drawing (display) routine.
 void drawScene(void)
@@ -20,9 +27,54 @@ void drawScene(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// spawn rays iteratively using camera point and point on camera plane
+	float* pixelData = new float[3*width*height];
+
+	Vector3* camera = new Vector3(0.0f, 0.0f, 0.0f);
+	Vector3* planeBotLeft = new Vector3(-1.0f, -1.0f, 0.5f);
+	Vector3* planeUp = new Vector3(0.0f, 2.0f, 0.0f);
+	Vector3* planeRight = new Vector3(2.0f, 0.0f, 0.0f);
+
+	for(int h = 0; h < height; h++)
+	{
+		for(int w = 0; w < width; w++)
+		{
+			float widthPercent = (float)w / width;
+			float heightPercent = (float)h / height;
+			Vector3* heightPoint = (*planeBotLeft) + ((*planeUp) * heightPercent);
+			Vector3* widthPoint = (*planeBotLeft) + ((*planeRight) * widthPercent);
+			Vector3* planePoint = new Vector3(widthPoint->v[0], heightPoint->v[1], 0.5f);
+
+			Ray* ray = new Ray(camera, (*planePoint) - camera);
+			ray->cast(scene->objects, scene->lights);
+			
+			int baseIndex = h*width*3 + w*3;
+			pixelData[baseIndex] = ray->color->v[0];
+			pixelData[baseIndex+1] = ray->color->v[1];
+			pixelData[baseIndex+2] = ray->color->v[2];
+
+			//delete ray;
+			delete heightPoint;
+			delete widthPoint;
+			delete planePoint;
+		}
+	}
+
+	// Draw the pixels to the screen, using the color data from the rays
+	glDrawPixels(width, height, GL_RGB, GL_FLOAT, pixelData);
 
 	// Flush created objects to the screen, i.e., force rendering.
-	glFlush(); 
+	glFlush();
+
+	delete camera;
+	delete planeBotLeft;
+	delete planeUp;
+	delete planeRight;
+	delete [] pixelData;
+}
+
+void setupScene(void)
+{
+	scene->addObject(new Sphere(new Vector3(0.0f, 0.0f, 2.0f), 1.0f));
 }
 
 // Initialization routine.
@@ -30,6 +82,7 @@ void setup(void)
 {
 	// Set background (or clearing) color.
 	glClearColor(1.0, 1.0, 1.0, 0.0); 
+	setupScene();
 }
 
 // OpenGL window reshape routine.

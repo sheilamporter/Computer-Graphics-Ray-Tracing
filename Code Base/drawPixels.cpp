@@ -21,11 +21,17 @@ void drawScene(void)
 
 	// Fill an array of floats (3 for each pixel) with random color data
 	float *pixelData = new float[3*width*height];
-	for(int i = 0; i < width*height*3; i+=3)
+	for(int h = 0; h < height; h++)
 	{
-		*(pixelData+i) = (rand() % 256) / 256.0f;
-		*(pixelData+i+1) = (rand() % 256) / 256.0f;
-		*(pixelData+i+2) = (rand() % 256) / 256.0f;
+		for(int w = 0; w < width; w++)
+		{
+			float heightPercent = (float)h / height;
+			float widthPercent = (float)w / width;
+			int baseIndex = h*width*3 + w*3;
+			pixelData[baseIndex] = widthPercent;
+			pixelData[baseIndex+1] = heightPercent;
+			pixelData[baseIndex+2] = 0.0f;
+		}
 	}
 
 	// Draw the pixels to the screen, using the random color data

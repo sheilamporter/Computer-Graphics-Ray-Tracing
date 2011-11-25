@@ -6,6 +6,8 @@
 #include <iostream>
 
 #include "Vector3.h"
+#include "Rays.h"
+#include "Objects.h"
 
 using namespace std;
 
@@ -77,6 +79,20 @@ void testVector3Normal()
 	assert(*normal == new Vector3(1.0f, 0.0f, 0.0f));
 }
 
+void testRaySphereCollide()
+{
+	Sphere* sphere = new Sphere(new Vector3(0.0f, 2.0f, 2.0f), 1.0f);
+	Ray* ray = new Ray(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, 1.0f));
+
+	Collision* col = sphere->collideWithRay(ray);
+	assert(!col);
+
+	sphere = new Sphere(new Vector3(1.0f, 2.0f, 3.0f), 1.0f);
+	ray = new Ray(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(1.0f, 1.9f, 3.1f));
+
+	col = sphere->collideWithRay(ray);
+}
+
 void main(int argc, char* argv)
 {
 	testVector3Magnitude();
@@ -85,6 +101,7 @@ void main(int argc, char* argv)
 	testVector3Dot();
 	testVector3Scale();
 	testVector3Normal();
+	testRaySphereCollide();
 
 	cout << "All tests passed." << endl;
 	system("pause");

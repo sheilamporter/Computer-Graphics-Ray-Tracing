@@ -1,15 +1,20 @@
-﻿Build started 11/17/2011 6:36:24 PM.
-     1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Ray Tracing.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
+﻿Build started 11/25/2011 1:39:26 AM.
+     1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Ray Tracing.vcxproj" on node 3 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\Ray Tracing.lastbuildstate".
+       InitializeBuildStatus:
          Touching "Debug\Ray Tracing.unsuccessfulbuild".
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
-         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt "..\Code Base\Objects.cpp" "..\Code Base\Rays.cpp" /clr:nostdlib 
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt "..\Code Base\Objects.cpp" "..\Code Base\Rays.cpp" "..\Code Base\RayTraceDemo.cpp" "..\Code Base\Vector3.cpp" /clr:nostdlib 
          Objects.cpp
          Rays.cpp
+         RayTraceDemo.cpp
+         Vector3.cpp
          Generating Code...
-         All outputs are up-to-date.
+         c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Code Base" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /analyze- /errorReport:prompt "C:\Users\todisk\AppData\Local\Temp\.NETFramework,Version=v4.0.AssemblyAttributes.cpp"
+         .NETFramework,Version=v4.0.AssemblyAttributes.cpp
        Link:
          c:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Ray Tracing.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Ray Tracing.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Debug\Ray Tracing.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\Objects.obj
          Debug\Rays.obj
@@ -22,8 +27,8 @@
        FinalizeBuildStatus:
          Deleting file "Debug\Ray Tracing.unsuccessfulbuild".
          Touching "Debug\Ray Tracing.lastbuildstate".
-     1>Done Building Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Ray Tracing.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Ray Tracing\Ray Tracing.vcxproj" (rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.59
+Time Elapsed 00:00:07.68
