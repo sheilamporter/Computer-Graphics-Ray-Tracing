@@ -5,6 +5,9 @@
 //#include <iostream>
 //#include <cmath>
 #include <list>
+#include "Objects.h"
+#include "Camera.h"
+#include "Vector3.h"
 
 #ifdef __APPLE__
 #  include <GLUT/glut.h>
@@ -14,37 +17,34 @@
 
 using namespace std;
 
-class Object;
-class Camera;
-class Vector3;
-struct Light;
+//class Object;
+//class Camera;
+//class Vector3;
+//struct Light;
 
 class Scene
 {        
 public:
-    list<Object*>* objects;
-	list<Light*>* lights;
+    list<Sphere> objects;
+	list<Light> lights;
     
     Scene()
 	{
-		objects = new list<Object*>();
-		lights = new list<Light*>();
 	}
         
-    Scene(list<Object*>* sceneObjects)
+    Scene(const list<Sphere>& sceneObjects)
     {
         objects = sceneObjects;
-		lights = new list<Light*>();
     }
         
-    void addObject(Object* newObject)
+    void addObject(const Sphere& newObject)
     {
-        objects->push_back(newObject);
+        objects.push_back(newObject);
     }
 
-	void addLight(Light* newLight)
+	void addLight(const Light& newLight)
 	{
-		lights->push_back(newLight);
+		lights.push_back(newLight);
 	}
 
     void Sort(/*Vector3 cameraPosition?*/)

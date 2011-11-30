@@ -1,5 +1,5 @@
-﻿Build started 11/29/2011 1:07:42 PM.
-     1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Unit Tests\Unit Tests.vcxproj" on node 3 (build target(s)).
+﻿Build started 11/30/2011 2:46:17 AM.
+     1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\Unit Tests\Unit Tests.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Unit Tests.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -27,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.82
+Time Elapsed 00:00:02.59

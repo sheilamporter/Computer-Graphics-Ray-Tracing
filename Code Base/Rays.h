@@ -5,7 +5,11 @@
 
 #include <list>
 
+#include "Objects.h"
+#include "Collisions.h"
+
 class Object;
+class Sphere;
 struct Light;
 struct Collision;
 
@@ -14,17 +18,17 @@ using namespace std;
 class Ray
 {
 public:
-	Vector3* origin;
-	Vector3* direction;
-	Vector3* color;
+	Vector3 origin;
+	Vector3 direction;
+	Vector3 color;
 
-	Ray(Vector3* o, Vector3* d);
-	Ray(Vector3* o, Vector3* d, int n);
+	Ray(const Vector3& o, const Vector3& d);
+	Ray(const Vector3& o, const Vector3& d, int n);
 	~Ray();
 
-	Collision* getFirstCollision(list<Object*>* scene);
-	void cast(list<Object*>* scene, list<Light*>* lights);
-	bool castFeeler(list<Object*>* scene, Light* light);
+	Collision getFirstCollision(const list<Sphere>& scene);
+	void cast(const list<Sphere>& scene, const list<Light>& lights);
+	bool castFeeler(const list<Sphere>& scene, const Light& light);
 
 private:
 	int depth;

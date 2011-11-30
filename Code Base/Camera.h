@@ -5,16 +5,16 @@
 #include <iostream>
 #include <cmath>
 
-class Vector3;
+#include "Vector3.h"
 
 class Camera
 {
     public:
-        Vector3* position;
-        Vector3* normal;
+        Vector3 position;
+        Vector3 normal;
         
         Camera();
-        Camera(Vector3* pos, Vector3* norm);
+        Camera(const Vector3& pos, const Vector3& norm);
         Camera(float posX, float posY, float posZ, float normX, float normY, float normZ);
 };
 

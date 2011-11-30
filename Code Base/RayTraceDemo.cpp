@@ -29,10 +29,10 @@ void drawScene(void)
 	// spawn rays iteratively using camera point and point on camera plane
 	float* pixelData = new float[3*width*height];
 
-	Vector3* camera = new Vector3(0.0f, 0.0f, 0.0f);
-	Vector3* planeBotLeft = new Vector3(-1.0f, -1.0f, 0.5f);
-	Vector3* planeUp = new Vector3(0.0f, 2.0f, 0.0f);
-	Vector3* planeRight = new Vector3(2.0f, 0.0f, 0.0f);
+	Vector3 camera(0.0f, 0.0f, 0.0f);
+	Vector3 planeBotLeft(-1.0f, -1.0f, 0.5f);
+	Vector3 planeUp(0.0f, 2.0f, 0.0f);
+	Vector3 planeRight(2.0f, 0.0f, 0.0f);
 
 	for(int h = 0; h < height; h++)
 	{
@@ -40,22 +40,17 @@ void drawScene(void)
 		{
 			float widthPercent = (float)w / width;
 			float heightPercent = (float)h / height;
-			Vector3* heightPoint = (*planeBotLeft) + ((*planeUp) * heightPercent);
-			Vector3* widthPoint = (*planeBotLeft) + ((*planeRight) * widthPercent);
-			Vector3* planePoint = new Vector3(widthPoint->v[0], heightPoint->v[1], 0.5f);
+			Vector3 heightPoint = planeBotLeft + (planeUp * heightPercent);
+			Vector3 widthPoint = planeBotLeft + (planeRight * widthPercent);
+			Vector3 planePoint(widthPoint.v[0], heightPoint.v[1], 0.5f);
 
-			Ray* ray = new Ray(new Vector3(camera), (*planePoint) - camera);
-			ray->cast(scene->objects, scene->lights);
+			Ray ray(camera, planePoint - camera);
+			ray.cast(scene->objects, scene->lights);
 			
 			int baseIndex = h*width*3 + w*3;
-			pixelData[baseIndex] = ray->color->v[0];
-			pixelData[baseIndex+1] = ray->color->v[1];
-			pixelData[baseIndex+2] = ray->color->v[2];
-
-			delete ray;
-			delete heightPoint;
-			delete widthPoint;
-			delete planePoint;
+			pixelData[baseIndex] = ray.color.v[0];
+			pixelData[baseIndex+1] = ray.color.v[1];
+			pixelData[baseIndex+2] = ray.color.v[2];
 		}
 	}
 
@@ -65,19 +60,15 @@ void drawScene(void)
 	// Flush created objects to the screen, i.e., force rendering.
 	glFlush();
 
-	delete camera;
-	delete planeBotLeft;
-	delete planeUp;
-	delete planeRight;
 	delete [] pixelData;
 }
 
 void setupScene(void)
 {
-	scene->addObject(new Sphere(new Vector3(0.0f, 0.0f, 2.0f), 1.0f));
-	Light* light = new Light;
-	light->color = new Vector3(1.0f, 1.0f, 1.0f);
-	light->position = new Vector3(-20.0f, 20.0f, -10.0f);
+	scene->addObject(Sphere(Vector3(0.0f, 0.0f, 2.0f), 1.0f));
+	Light light;
+	light.color.set(1.0f, 1.0f, 1.0f);
+	light.position.set(-20.0f, 20.0f, -10.0f);
 	scene->addLight(light);
 }
 

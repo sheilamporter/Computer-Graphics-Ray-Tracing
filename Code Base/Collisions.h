@@ -4,9 +4,9 @@
 class Vector3;
 
 struct Collision {
-	Vector3* point;
-	Vector3* normal;
-	Vector3* color;
+	Vector3 point;
+	Vector3 normal;
+	Vector3 color;
 	float distance;
 };
 

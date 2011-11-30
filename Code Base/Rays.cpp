@@ -9,85 +9,72 @@ using namespace std;
 
 #define IMPLEMENTATION 2
 
-Ray::Ray(Vector3* o, Vector3* d)
+Ray::Ray(const Vector3& o, const Vector3& d)
 {
 	origin = o;
-	direction = d->normal();
+	direction = d.normal();
 	depth = 0;
 	color = NULL;
 }
 
-Ray::Ray(Vector3* o, Vector3*d, int n)
+Ray::Ray(const Vector3& o, const Vector3& d, int n)
 {
 	origin = o;
-	direction = d;
+	direction = d.normal();
 	depth = n;
 	color = NULL;
 }
 
 Ray::~Ray()
 {
-	delete origin;
-	delete direction;
-	delete color;
 }
 
-bool compare_distance(Collision* col1, Collision* col2)
+bool compare_distance(const Collision& col1, const Collision& col2)
 {
-	return col1->distance < col2->distance;
+	return col1.distance < col2.distance;
 }
 
-Collision* Ray::getFirstCollision(list<Object*>* scene)
+Collision Ray::getFirstCollision(const list<Sphere>& scene)
 {
-	list<Collision*>* collisions = new list<Collision*>();
+	Collision firstCol;
+	list<Collision> collisions;
 
 	// for each object in the scene
-	list<Object*>::iterator itr = scene->begin();
-	for( ; itr != scene->end(); itr++)
+	list<Sphere>::const_iterator itr = scene.begin();
+	for( ; itr != scene.end(); itr++)
 	{
 		// call the object's collision test with ray
-		Collision* col = (*itr)->collideWithRay(this);
+		Collision col = (*itr).collideWithRay((*this));
 
 		// if the object collides, add the collision to the list
-		if(col)
-			collisions->push_back(col);
+		if(col.distance > -1.0f)
+			collisions.push_back(col);
 	}
 
 	// if the list is empty, return NULL
-	if (collisions->size() == 0)
-		return NULL;
+	if (collisions.size() == 0)
+	{
+		firstCol.distance = -1.0f;
+		return firstCol;
+	}
 
 	// sort the list by increasing distance, return the first element
-	collisions->sort(compare_distance);
+	collisions.sort(compare_distance);
 
-	Collision* col = new Collision;
-	col->point = new Vector3((*collisions->begin())->point);
-	col->normal = new Vector3((*collisions->begin())->normal);
-	col->color = new Vector3((*collisions->begin())->color);
-	col->distance = (*collisions->begin())->distance;
-
-	list<Collision*>::iterator colItr = collisions->begin();
-	for( ; colItr != collisions->end(); colItr++)
-	{
-		delete (*colItr);
-	}
-	delete collisions;
-
-	return col;
+	return *(collisions.begin());
 }
 
-void Ray::cast(list<Object*>* scene, list<Light*>* lights)
+void Ray::cast(const list<Sphere>& scene, const list<Light>& lights)
 {
-	Collision *col = getFirstCollision(scene);
+	Collision col = getFirstCollision(scene);
 
 	// if there is a collision
-	if(col)
+	if(col.distance > 0.0f)
 	{
 		// first implementation: return the color immediately
 		if(IMPLEMENTATION == 1)
 		{
-			color = new Vector3(col->color);
-			delete col;
+			color = col.color;
 			return;
 		}
 
@@ -95,31 +82,28 @@ void Ray::cast(list<Object*>* scene, list<Light*>* lights)
 		if(IMPLEMENTATION == 2)
 		{
 			// take the color of the collision
-			color = new Vector3(col->color);
+			color = col.color;
 
 			// for each light, case a feeler ray to see if there should be shadow
-			list<Light*>::iterator itr = lights->begin();
-			for( ; itr != lights->end(); itr++)
+			list<Light>::const_iterator itr = lights.begin();
+			for( ; itr != lights.end(); itr++)
 			{
 				// compute the normal to the light
-				Vector3* toLight = ((*(*itr)->position) - col->point)->normal();
-				Ray* feeler = new Ray(col->point, toLight);
-				bool feelerHit = feeler->castFeeler(scene, (*itr));
-				delete feeler;
+				Vector3 toLight = ((*itr).position - col.point).normal();
+				Ray feeler(col.point, toLight);
+				bool feelerHit = feeler.castFeeler(scene, (*itr));
 				if(feelerHit) 
 				{
-					color->set(0.05f, 0.05f, 0.05f);
+					color.set(0.05f, 0.05f, 0.05f);
 				}
 				else
 				{
-					float intensity = (*toLight) * col->normal;
-					color = (*color) + ((*(*itr)->color) * intensity);
+					float intensity = toLight * col.normal;
+					color = color + ((*itr).color * intensity);
 
 				}
-				delete toLight;
 			}
 
-			delete col;
 			return;
 		}
 
@@ -128,30 +112,27 @@ void Ray::cast(list<Object*>* scene, list<Light*>* lights)
 		// fourth implementation: spanw feeler rays, reflective rays, refractive rays
 	}
 
-	color = new Vector3(0.0f, 0.0f, 0.0f);
+	color.set(0.0f,0.0f,0.0f);
 }
 
-bool Ray::castFeeler(list<Object*>* scene, Light* light)
+bool Ray::castFeeler(const list<Sphere>& scene, const Light& light)
 {
-	Collision* col = getFirstCollision(scene);
+	Collision col = getFirstCollision(scene);
 	bool hit = false;
 	
 	// if col is NULL or if the distance is greater than the distance to the light, return the light color
-	if(!col)
+	if(col.distance <= -1.0f)
 	{
-		delete col;
 		return hit;
 	}
 
-	Vector3* diff = (*light->position) - origin;
-	float distToLight = diff->magnitude();
-	delete diff;
+	Vector3 diff = light.position - origin;
+	float distToLight = diff.magnitude();
 
-	if(distToLight > col->distance)
+	if(distToLight > col.distance)
 	{
 		hit = true;
 	}
 	
-	delete col;
 	return hit;
 }
