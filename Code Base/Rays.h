@@ -24,7 +24,7 @@ public:
 
 	Collision* getFirstCollision(list<Object*>* scene);
 	void cast(list<Object*>* scene, list<Light*>* lights);
-	Vector3* castFeeler(list<Object*>* scene, Light* light);
+	bool castFeeler(list<Object*>* scene, Light* light);
 
 private:
 	int depth;

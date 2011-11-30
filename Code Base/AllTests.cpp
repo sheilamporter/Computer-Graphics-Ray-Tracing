@@ -91,6 +91,12 @@ void testRaySphereCollide()
 	ray = new Ray(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(1.0f, 1.9f, 3.1f));
 
 	col = sphere->collideWithRay(ray);
+
+	sphere = new Sphere(new Vector3(0.0f, 0.0f, 1.0f), 1.0f);
+	ray = new Ray(new Vector3(0.0f, 0.0f, 0.0f), new Vector3(0.0f, 0.0f, -1.0f));
+
+	col = sphere->collideWithRay(ray);
+	assert(!col);
 }
 
 void main(int argc, char* argv)

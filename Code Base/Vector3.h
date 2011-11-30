@@ -11,7 +11,8 @@ public:
 	Vector3(float nx, float ny, float nz);
 	Vector3(float nx, float ny, float nz, float nw);
 	Vector3(const Vector3* a);
-
+	
+	void set(float x, float y, float z);
 	float magnitude() const;
 	Vector3* normal() const;
 	

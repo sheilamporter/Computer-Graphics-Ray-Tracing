@@ -25,6 +25,14 @@ def ray_circle_intersect(anchor, direction, center, radius):
     l = l1 if l1 < l2 else l2
     
     return (True, l)
+    
+class Light(object):
+    def __init__(self,position,color):
+        self.position = position
+        self.color = color
+        
+    def draw(self,screen):
+        pygame.draw.circle(screen,self.color, (self.position.x,self.position.y), 5)
 
 class Ray(object):
     def __init__(self,origin,point,depth=1):
@@ -60,6 +68,37 @@ class Ray(object):
             self.color = tuple(map(lambda x,y: (x+y/2.0), list(circle.color), list(reflectRay.color)))
             
         return rays
+        
+    def cast_for_shadows(self,scene,lights,screen):
+        hits = []
+        for circle in scene:
+            col, colDist = ray_circle_intersect(self.origin, self.direction, circle.center, circle.radius)
+            if col and self.depth < 5:
+                hits.append((col,colDist,circle))
+                
+        if len(hits) > 0:
+            hits.sort(key=lambda x: x[1])
+            col = hits[0][0]
+            colDist = hits[0][1]
+            circle = hits[0][2]
+            self.colPoint = self.origin + self.direction.scale(colDist)
+            self.color = circle.color
+            
+            # spawn a feeler ray to each light
+            for light in lights:
+                feelerRay = Ray(self.colPoint, light.position - self.colPoint, self.depth)
+                if feelerRay.cast_feeler(scene,screen):
+                    self.color = (50,50,50)
+                
+        
+    def cast_feeler(self,scene,screen):
+        hits = []
+        for circle in scene:
+            col, colDist = ray_circle_intersect(self.origin, self.direction, circle.center, circle.radius)
+            if col and self.depth < 5:
+                return True
+                
+        return False
         
     def draw(self,screen):
         self.color = tuple(min(x,255) for x in list(self.color))

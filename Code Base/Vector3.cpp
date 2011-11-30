@@ -28,6 +28,11 @@ Vector3::Vector3(const Vector3* a)
 	v[0] = a->v[0]; v[1] = a->v[1]; v[2] = a->v[2]; v[3] = 1.0f;
 }
 
+void Vector3::set(float x, float y, float z)
+{
+	v[0] = x; v[1] = y; v[2] = z;
+}
+
 float Vector3::magnitude() const
 {
 	return sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);

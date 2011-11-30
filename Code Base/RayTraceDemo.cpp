@@ -44,7 +44,7 @@ void drawScene(void)
 			Vector3* widthPoint = (*planeBotLeft) + ((*planeRight) * widthPercent);
 			Vector3* planePoint = new Vector3(widthPoint->v[0], heightPoint->v[1], 0.5f);
 
-			Ray* ray = new Ray(camera, (*planePoint) - camera);
+			Ray* ray = new Ray(new Vector3(camera), (*planePoint) - camera);
 			ray->cast(scene->objects, scene->lights);
 			
 			int baseIndex = h*width*3 + w*3;
@@ -52,7 +52,7 @@ void drawScene(void)
 			pixelData[baseIndex+1] = ray->color->v[1];
 			pixelData[baseIndex+2] = ray->color->v[2];
 
-			//delete ray;
+			delete ray;
 			delete heightPoint;
 			delete widthPoint;
 			delete planePoint;
@@ -75,6 +75,10 @@ void drawScene(void)
 void setupScene(void)
 {
 	scene->addObject(new Sphere(new Vector3(0.0f, 0.0f, 2.0f), 1.0f));
+	Light* light = new Light;
+	light->color = new Vector3(1.0f, 1.0f, 1.0f);
+	light->position = new Vector3(-20.0f, 20.0f, -10.0f);
+	scene->addLight(light);
 }
 
 // Initialization routine.

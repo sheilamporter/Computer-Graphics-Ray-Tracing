@@ -4,6 +4,8 @@
 #include "Objects.h"
 #include "Rays.h"
 
+#define PI 3.14159
+
 Object::Object()
 {
 	position = new Vector3();
@@ -86,6 +88,7 @@ Collision* Sphere::collideWithRay(Ray* ray)
 
 	float distance = -1.0f;
 	float angle = acos((*originToCenter->normal()) * ray->direction->normal());
+	angle = (angle / PI) * 180.0f;
 
 	if (angle > 90.0f)
 		return NULL;
@@ -114,6 +117,9 @@ Collision* Sphere::collideWithRay(Ray* ray)
 	col->point = (*ray->origin) + (*directionNorm * distance);
 	col->normal = (*col->point) - position;
 	col->color = color;
+
+	delete originToCenter;
+	delete directionNorm;
 
 	return col;
 }
