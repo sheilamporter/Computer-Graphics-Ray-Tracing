@@ -97,6 +97,26 @@ void testRaySphereCollide()
 
 	col = sphere.collideWithRay(ray);
 	assert(col.distance < 0.0f);
+
+	sphere = Sphere(Vector3(-1.5f, 1.5f, 1.0f), 0.5f);
+	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(-1.01f, 1.01f, 0.5f));
+
+	col = sphere.collideWithRay(ray);
+	//assert(col.distance < 0.0f);
+}
+
+void testVector3Reflect()
+{
+	Vector3 vec = Vector3(0.0f, -0.5f, -0.5f).normal();
+	Vector3 norm(0.0f, 1.0f, 0.0f);
+
+	Vector3 result = vec.reflect(norm);
+	assert(result == Vector3(0.0f, 0.5f, -0.5f).normal());
+
+	vec = Vector3(-0.009f, -0.066f, 0.998f).normal();
+	norm = Vector3(-0.130f, -0.985f, -0.109f).normal();
+
+	result = vec.reflect(norm).normal();
 }
 
 void main(int argc, char* argv)
@@ -108,6 +128,7 @@ void main(int argc, char* argv)
 	testVector3Scale();
 	testVector3Normal();
 	testRaySphereCollide();
+	testVector3Reflect();
 
 	cout << "All tests passed." << endl;
 	system("pause");

@@ -29,7 +29,7 @@ void drawScene(void)
 	// spawn rays iteratively using camera point and point on camera plane
 	float* pixelData = new float[3*width*height];
 
-	Vector3 camera(0.0f, 0.0f, 0.0f);
+	Vector3 camera(0.0f, 0.0f, -5.0f);
 	Vector3 planeBotLeft(-1.0f, -1.0f, 0.5f);
 	Vector3 planeUp(0.0f, 2.0f, 0.0f);
 	Vector3 planeRight(2.0f, 0.0f, 0.0f);
@@ -44,8 +44,9 @@ void drawScene(void)
 			Vector3 widthPoint = planeBotLeft + (planeRight * widthPercent);
 			Vector3 planePoint(widthPoint.v[0], heightPoint.v[1], 0.5f);
 
+			//Ray ray(planePoint, Vector3(0.0f, 0.0f, 1.0f));
 			Ray ray(camera, planePoint - camera);
-			ray.cast(scene->objects, scene->lights);
+			ray.cast(scene->objects, scene->lights, 3);
 			
 			int baseIndex = h*width*3 + w*3;
 			pixelData[baseIndex] = ray.color.v[0];
@@ -65,11 +66,33 @@ void drawScene(void)
 
 void setupScene(void)
 {
-	scene->addObject(Sphere(Vector3(0.0f, 0.0f, 2.0f), 1.0f));
+	Sphere s(Vector3(0.0f, 0.0f, 10.0f), 1.0f);
+	Material red;
+	red.ambient.set(0.5f, 0.0f, 0.0f);
+	red.diffuse.set(0.8f, 0.0f, 0.0f);
+	red.specular.set(0.9f, 0.9f, 0.9f);
+	red.shininess = 30;
+	red.reflection = 1.0f;
+	s.setMaterial(red);
+	scene->addObject(s);
+
+	Sphere two(Vector3(0.0f, 1.5f, 14.0f), 0.5f);
+	Material blue;
+	blue.ambient.set(0.0f, 0.0f, 0.5f);
+	blue.diffuse.set(0.0f, 0.0f, 0.8f);
+	blue.specular.set(0.9f, 0.9f, 0.9f);
+	blue.shininess = 20;
+	blue.reflection = 1.0f;
+	two.setMaterial(blue);
+	scene->addObject(two);
+
 	Light light;
 	light.color.set(1.0f, 1.0f, 1.0f);
-	light.position.set(-20.0f, 20.0f, -10.0f);
+	light.position.set(100.0f, 100.0f, 5.0f);
 	scene->addLight(light);
+
+	light.position.set(20.0f, 20.0f, 30.0f);
+	//scene->addLight(light);
 }
 
 // Initialization routine.

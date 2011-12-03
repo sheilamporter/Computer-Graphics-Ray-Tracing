@@ -45,6 +45,20 @@ Vector3 Vector3::normal() const
 	return Vector3(v[0]*oneOverMag,v[1]*oneOverMag,v[2]*oneOverMag);
 }
 
+Vector3 Vector3::scale(const Vector3& a) const
+{
+	return Vector3(v[0]*a.v[0], v[1]*a.v[1], v[2]*a.v[2]);
+}
+
+Vector3 Vector3::reflect(const Vector3& a) const
+{
+	Vector3 ref;
+	float c1 = -1.0f * (a * (*this));
+	//ref = (a * (((*this) * a) * 2)) - (*this);
+	ref = (*this) + ((a * c1) * 2.0f);
+	return ref;
+}
+
 void Vector3::operator=(const Vector3& a)
 {
 	v[0] = a.v[0]; v[1] = a.v[1]; v[2] = a.v[2]; v[3] = 1.0f;
@@ -73,6 +87,12 @@ float Vector3::operator*(const Vector3& a) const
 Vector3 Vector3::operator*=(float s)
 {
 	(*this) = (*this) * s;
+	return (*this);
+}
+
+Vector3 Vector3::operator+=(const Vector3& a)
+{
+	(*this) = (*this) + a;
 	return (*this);
 }
 

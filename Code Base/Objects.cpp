@@ -39,6 +39,11 @@ Object::~Object()
 {
 }
 
+void Object::setMaterial(const Material& mat)
+{
+	material = mat;
+}
+
 Collision Object::collideWithRay(const Ray& ray) const
 {
 	Collision col;
@@ -83,6 +88,7 @@ Sphere::~Sphere()
 
 Collision Sphere::collideWithRay(const Ray& ray) const
 {
+	// Current collision based on: http://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html
 	Collision col;
 	Vector3 originToCenter = position - ray.origin;
 
@@ -96,7 +102,7 @@ Collision Sphere::collideWithRay(const Ray& ray) const
 		return col;
 	}
 
-	Vector3 directionNorm = ray.direction.normal();
+	/*Vector3 directionNorm = ray.direction.normal();
 
 	float b = (originToCenter * directionNorm) * 2.0f;
 	float c = (originToCenter * originToCenter) - pow(radius, 2);
@@ -116,11 +122,24 @@ Collision Sphere::collideWithRay(const Ray& ray) const
 	float l2 = (b + b4ac) * divisor;
 
 	if (l1 < l2) distance = l1;
-	else distance = l2;
+	else distance = l2;*/
 
-	col.distance = distance;
-	col.point = ray.origin + (directionNorm * distance);
-	col.normal = col.point - position;
+	float v = originToCenter * ray.direction;
+	float disc = pow(radius, 2) - ((originToCenter * originToCenter) - pow(v, 2));
+	if (disc < 0.0f)
+	{
+		col.distance = -1.0f;
+		return col;
+	}
+
+	float d = sqrt(disc);
+	col.point = ray.origin + (ray.direction * (v - d));
+	col.distance = (col.point - ray.origin).magnitude();
+
+	col.material = material;
+	//col.distance = distance;
+	//col.point = ray.origin + (directionNorm * distance);
+	col.normal = (col.point - position).normal();
 	col.color = color;
 
 	return col;

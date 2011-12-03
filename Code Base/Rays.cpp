@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define IMPLEMENTATION 2
+#define IMPLEMENTATION 3
 
 Ray::Ray(const Vector3& o, const Vector3& d)
 {
@@ -64,7 +64,7 @@ Collision Ray::getFirstCollision(const list<Sphere>& scene)
 	return *(collisions.begin());
 }
 
-void Ray::cast(const list<Sphere>& scene, const list<Light>& lights)
+Vector3 Ray::cast(const list<Sphere>& scene, const list<Light>& lights, int depth)
 {
 	Collision col = getFirstCollision(scene);
 
@@ -75,15 +75,12 @@ void Ray::cast(const list<Sphere>& scene, const list<Light>& lights)
 		if(IMPLEMENTATION == 1)
 		{
 			color = col.color;
-			return;
+			return color;
 		}
 
 		// second implementation: spawn feeler rays for shadows, combine returned colors
-		if(IMPLEMENTATION == 2)
+		if(IMPLEMENTATION > 1)
 		{
-			// take the color of the collision
-			color = col.color;
-
 			// for each light, case a feeler ray to see if there should be shadow
 			list<Light>::const_iterator itr = lights.begin();
 			for( ; itr != lights.end(); itr++)
@@ -92,27 +89,50 @@ void Ray::cast(const list<Sphere>& scene, const list<Light>& lights)
 				Vector3 toLight = ((*itr).position - col.point).normal();
 				Ray feeler(col.point, toLight);
 				bool feelerHit = feeler.castFeeler(scene, (*itr));
+				
+				// Ambient component of lighting.
+				color += col.material.ambient.scale((*itr).color);
+				// If there's an obstruction, the only affect of this light is it's ambient.
 				if(feelerHit) 
 				{
-					color.set(0.05f, 0.05f, 0.05f);
+					continue;
 				}
 				else
 				{
-					float intensity = toLight * col.normal;
-					color = color + ((*itr).color * intensity);
+					// The following is an appoximation of Phong's lighting model.
+					// Compute the angles between the light direction and: the view; the normal.
+					float normAngle = toLight * col.normal;
+					//float specAngle = (toLight*-1.0f).reflect(col.normal) * direction;
+					float specAngle = ((toLight + (direction * -1.0f)) * 0.5f).normal() * col.normal;
 
+					// Diffuse component of lighting.
+					color += col.material.diffuse.scale((*itr).color) * normAngle;
+
+					// Specular component of lighting.
+					if(specAngle > 0.0f)
+						color += col.material.specular.scale((*itr).color) * pow(specAngle, col.material.shininess);
 				}
 			}
 
-			return;
+			// third implementation: spawn feeler rays for shadows, and also reflective rays
+			if(IMPLEMENTATION > 2)
+			{
+				if (depth > 0)
+				{
+					Vector3 dir = direction.reflect(col.normal).normal();
+					Ray reflect(col.point, dir);
+					color +=  reflect.cast(scene, lights, depth-1) * col.material.reflection;
+				}
+			}
+
+			return color;
 		}
 
-		// third implementation: spawn feeler rays for shadows, and also reflective rays
-
-		// fourth implementation: spanw feeler rays, reflective rays, refractive rays
+		// fourth implementation: spawn feeler rays, reflective rays, refractive rays
 	}
 
 	color.set(0.0f,0.0f,0.0f);
+	return color;
 }
 
 bool Ray::castFeeler(const list<Sphere>& scene, const Light& light)

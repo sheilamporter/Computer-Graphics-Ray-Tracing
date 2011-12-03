@@ -6,12 +6,6 @@
 #include <cmath>
 #include <fstream>
 
-#ifdef __APPLE__
-#  include <GLUT/glut.h>
-#else
-#  include <GL/glut.h>
-#endif
-
 #include "Vector3.h"
 #include "Collisions.h"
 #include "Rays.h"
@@ -20,6 +14,7 @@ using namespace std;
 
 class Vector3;
 struct Collision;
+struct Material;
 class Ray;
 
 struct Light
@@ -33,6 +28,7 @@ class Object
 public:
     Vector3 position;
     Vector3 color;
+	Material material;
         
     Object();
 	Object(const Vector3& pos);
@@ -40,6 +36,8 @@ public:
 	Object(const Vector3& pos, const Vector3& clr);
 	Object(float px, float py, float pz, float cx, float cy, float cz);
 	~Object();
+
+	void setMaterial(const Material& mat);
 
 	Collision collideWithRay(const Ray& ray) const; // override this for per-object-type collision with ray
 };

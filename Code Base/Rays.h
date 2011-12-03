@@ -27,7 +27,7 @@ public:
 	~Ray();
 
 	Collision getFirstCollision(const list<Sphere>& scene);
-	void cast(const list<Sphere>& scene, const list<Light>& lights);
+	Vector3 cast(const list<Sphere>& scene, const list<Light>& lights, int depth);
 	bool castFeeler(const list<Sphere>& scene, const Light& light);
 
 private:

@@ -1,4 +1,4 @@
-﻿Build started 11/25/2011 1:39:26 AM.
+﻿Build started 12/3/2011 1:06:31 AM.
      1>Project "C:\Users\todisk\Desktop\Computer Graphics\Ray Tracing Project\Computer-Graphics-Ray-Tracing\OpenGL Tests\OpenGL Tests.vcxproj" on node 2 (rebuild target(s)).
      1>_PrepareForClean:
          Deleting file "Debug\OpenGL Tests.lastbuildstate".
@@ -28,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.85
+Time Elapsed 00:00:03.17
