@@ -1,0 +1,3 @@
+http://en.wikipedia.org/wiki/Path_tracing
+http://en.wikipedia.org/wiki/Ray_tracing_(graphics)#Ray_tracing_algorithm
+http://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html
