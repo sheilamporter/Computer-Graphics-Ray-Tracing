@@ -98,8 +98,8 @@ void testRaySphereCollide()
 	col = sphere.collideWithRay(ray);
 	assert(col.distance < 0.0f);
 
-	sphere = Sphere(Vector3(-1.5f, 1.5f, 1.0f), 0.5f);
-	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(-1.01f, 1.01f, 0.5f));
+	sphere = Sphere(Vector3(0.0f, 0.0f, 0.0f), 1.0f);
+	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
 
 	col = sphere.collideWithRay(ray);
 	//assert(col.distance < 0.0f);
