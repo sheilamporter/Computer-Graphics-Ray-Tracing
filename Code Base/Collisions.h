@@ -8,6 +8,7 @@ struct Material
 	Vector3 ambient;
 	Vector3 diffuse;
 	Vector3 specular;
+	Vector3 emittance;
 	float shininess;
 	float reflection;
 	float transmission;

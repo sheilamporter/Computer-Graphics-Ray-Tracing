@@ -130,9 +130,30 @@ Vector3 Ray::cast(const list<Sphere>& scene, const list<Light>& lights, int dept
 
 		// fourth implementation: spawn feeler rays, reflective rays, refractive rays
 	}
+	
+	color.set(0.0f,0.0f,0.0f);
+	return color;
+}
+
+Vector3 Ray::castPath(const list<Sphere>& scene, const list<Light>& lights, int depth)
+{
+	Collision col = getFirstCollision(scene);
+
+	if (col.distance > 0.0f)
+	{
+		//
+		if (depth > 0)
+		{
+			//color *= reflected ray (recursion)
+			color.scale(castPath(scene, lights, depth-1));
+		}
+		color += col.material.emittance;
+		return color;
+	}
 
 	color.set(0.0f,0.0f,0.0f);
 	return color;
+
 }
 
 bool Ray::castFeeler(const list<Sphere>& scene, const Light& light)

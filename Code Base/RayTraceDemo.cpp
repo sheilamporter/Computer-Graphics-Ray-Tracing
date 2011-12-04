@@ -71,6 +71,7 @@ void setupScene(void)
 	red.ambient.set(0.5f, 0.0f, 0.0f);
 	red.diffuse.set(0.8f, 0.0f, 0.0f);
 	red.specular.set(0.9f, 0.9f, 0.9f);
+	red.emittance.set(0.0f, 0.9f, 0.9f);
 	red.shininess = 30;
 	red.reflection = 1.0f;
 	s.setMaterial(red);
@@ -81,6 +82,7 @@ void setupScene(void)
 	blue.ambient.set(0.0f, 0.0f, 0.5f);
 	blue.diffuse.set(0.0f, 0.0f, 0.8f);
 	blue.specular.set(0.9f, 0.9f, 0.9f);
+	blue.emittance.set(0.2f, 0.2f, 0.2f);
 	blue.shininess = 20;
 	blue.reflection = 1.0f;
 	two.setMaterial(blue);
