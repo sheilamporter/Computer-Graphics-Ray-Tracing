@@ -17,6 +17,7 @@ public:
 	Vector3 normal() const;
 	Vector3 scale(const Vector3& a) const;
 	Vector3 reflect(const Vector3& a) const;
+	Vector3 project(const Vector3& a) const;
 	
 	void operator=(const Vector3& a);
 	Vector3 operator+(const Vector3& a) const;

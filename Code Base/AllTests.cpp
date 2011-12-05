@@ -79,6 +79,20 @@ void testVector3Normal()
 	assert(normal == Vector3(1.0f, 0.0f, 0.0f));
 }
 
+void testVector3Reflect()
+{
+	Vector3 vec = Vector3(0.0f, -0.5f, -0.5f).normal();
+	Vector3 norm(0.0f, 1.0f, 0.0f);
+
+	Vector3 result = vec.reflect(norm);
+	assert(result == Vector3(0.0f, 0.5f, -0.5f).normal());
+
+	vec = Vector3(-0.009f, -0.066f, 0.998f).normal();
+	norm = Vector3(-0.130f, -0.985f, -0.109f).normal();
+
+	result = vec.reflect(norm).normal();
+}
+
 void testRaySphereCollide()
 {
 	Sphere sphere(Vector3(0.0f, 2.0f, 2.0f), 1.0f);
@@ -100,35 +114,46 @@ void testRaySphereCollide()
 
 	sphere = Sphere(Vector3(0.0f, 0.0f, 0.0f), 1.0f);
 	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
+	ray.insideSphere = true;
 
 	col = sphere.collideWithRay(ray);
 	//assert(col.distance < 0.0f);
 }
 
-void testVector3Reflect()
+void testRayPlaneCollide()
 {
-	Vector3 vec = Vector3(0.0f, -0.5f, -0.5f).normal();
-	Vector3 norm(0.0f, 1.0f, 0.0f);
+	Plane plane(Vector3(0.0f, 0.0f, 5.0f), Vector3(0.0f, 0.0f, -1.0f));
+	Ray ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
+	Collision col = plane.collideWithRay(ray);
+	assert(col.distance == 5.0f);
 
-	Vector3 result = vec.reflect(norm);
-	assert(result == Vector3(0.0f, 0.5f, -0.5f).normal());
+	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(1.0f, 3.0f, 1.5f).normal());
+	col = plane.collideWithRay(ray);
+	assert(col.distance > 0.0f);
 
-	vec = Vector3(-0.009f, -0.066f, 0.998f).normal();
-	norm = Vector3(-0.130f, -0.985f, -0.109f).normal();
+	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 0.0f).normal());
+	col = plane.collideWithRay(ray);
+	assert(col.distance < 0.0f);
 
-	result = vec.reflect(norm).normal();
+	ray = Ray(Vector3(0.0f, 0.0f, 10.0f), Vector3(0.0f, 0.0f, -1.0f));
+	col = plane.collideWithRay(ray);
+	assert(col.distance < 0.0f);
 }
 
 void main(int argc, char* argv)
 {
+	/* Vector3 unit tests */
 	testVector3Magnitude();
 	testVector3Add();
 	testVector3Subtract();
 	testVector3Dot();
 	testVector3Scale();
 	testVector3Normal();
-	testRaySphereCollide();
 	testVector3Reflect();
+
+	/* Object collision unit tests */
+	testRaySphereCollide();
+	testRayPlaneCollide();
 
 	cout << "All tests passed." << endl;
 	system("pause");

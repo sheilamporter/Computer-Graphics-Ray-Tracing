@@ -25,19 +25,28 @@ using namespace std;
 class Scene
 {        
 public:
-    list<Sphere> objects;
+    list<Object*> objects;
 	list<Light> lights;
     
     Scene()
 	{
 	}
         
-    Scene(const list<Sphere>& sceneObjects)
+    Scene(const list<Object*>& sceneObjects)
     {
         objects = sceneObjects;
     }
+
+	~Scene()
+	{
+		list<Object*>::iterator itr = objects.begin();
+		for( ; itr != objects.end(); itr++)
+		{
+			delete (*itr);
+		}
+	}
         
-    void addObject(const Sphere& newObject)
+    void addObject(Object* newObject)
     {
         objects.push_back(newObject);
     }

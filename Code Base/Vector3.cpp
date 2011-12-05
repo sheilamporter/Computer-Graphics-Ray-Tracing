@@ -59,6 +59,12 @@ Vector3 Vector3::reflect(const Vector3& a) const
 	return ref;
 }
 
+Vector3 Vector3::project(const Vector3& a) const
+{
+	float s = ((*this) * a) / a.magnitude();
+	return a * s;
+}
+
 void Vector3::operator=(const Vector3& a)
 {
 	v[0] = a.v[0]; v[1] = a.v[1]; v[2] = a.v[2]; v[3] = 1.0f;

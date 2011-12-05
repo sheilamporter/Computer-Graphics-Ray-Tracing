@@ -4,7 +4,7 @@
 #include "Objects.h"
 #include "Rays.h"
 
-#define PI 3.14159
+#define PI 3.14159f
 
 Object::Object()
 {
@@ -42,12 +42,6 @@ Object::~Object()
 void Object::setMaterial(const Material& mat)
 {
 	material = mat;
-}
-
-Collision Object::collideWithRay(const Ray& ray) const
-{
-	Collision col;
-	return col;
 }
 
 Sphere::Sphere() : Object() {}
@@ -90,6 +84,19 @@ Collision Sphere::collideWithRay(const Ray& ray) const
 {
 	// Current collision based on: http://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html
 	Collision col;
+
+	if(ray.insideSphere)
+	{
+		Vector3 half = (position - ray.origin).project(ray.direction);
+		float rest = pow(radius,2) - (position - (ray.origin + half)).magnitude();
+		float full = half.magnitude() + rest;
+		col.point = ray.origin + ray.direction * full;
+		col.distance = full;
+		col.material = material;
+		col.normal = col.point - position;
+		return col;
+	}
+
 	Vector3 originToCenter = position - ray.origin;
 
 	float distance = -1.0f;
@@ -102,28 +109,6 @@ Collision Sphere::collideWithRay(const Ray& ray) const
 		return col;
 	}
 
-	/*Vector3 directionNorm = ray.direction.normal();
-
-	float b = (originToCenter * directionNorm) * 2.0f;
-	float c = (originToCenter * originToCenter) - pow(radius, 2);
-	float a = (directionNorm * directionNorm);
-
-	float divisor = 1.0f / (2.0f * a);
-	float discriminate = pow(b, 2) - 4.0f*a*c;
-
-	if (discriminate <= 0.0f)
-	{
-		col.distance = -1.0f;
-		return col;
-	}
-
-	float b4ac = sqrt(discriminate);
-	float l1 = (b - b4ac) * divisor;
-	float l2 = (b + b4ac) * divisor;
-
-	if (l1 < l2) distance = l1;
-	else distance = l2;*/
-
 	float v = originToCenter * ray.direction;
 	float disc = pow(radius, 2) - ((originToCenter * originToCenter) - pow(v, 2));
 	if (disc < 0.0f)
@@ -135,12 +120,53 @@ Collision Sphere::collideWithRay(const Ray& ray) const
 	float d = sqrt(disc);
 	col.point = ray.origin + (ray.direction * (v - d));
 	col.distance = (col.point - ray.origin).magnitude();
+	col.material = material;
+	col.normal = (col.point - position).normal();
+
+	return col;
+}
+
+Plane::Plane(const Vector3& point, const Vector3& norm) : Object(point)
+{
+	normal = norm;
+	width = -1.0f;
+	height = -1.0f;
+}
+
+Plane::Plane(const Vector3& point, const Vector3& norm, float w, float h) : Object(point)
+{
+	normal = norm;
+	width = w;
+	height = h;
+}
+
+Collision Plane::collideWithRay(const Ray& ray) const
+{
+	Collision col;
+	float denom = ray.direction * normal;
+
+	if(denom >= 0.0f)
+	{
+		col.distance = -1.0f;
+		return col;
+	}
+
+	float numer = (position - ray.origin) * normal;
+
+	col.distance = numer / denom;
+	col.point = ray.origin + (ray.direction * col.distance);
+
+	if(width > 0.0f && height > 0.0f)
+	{
+		if (fabs((col.point - position).v[0]) > width || fabs((col.point - position).v[1]) > height)
+		{
+			col.distance = -1.0f;
+			return col;
+		}
+	}
 
 	col.material = material;
-	//col.distance = distance;
-	//col.point = ray.origin + (directionNorm * distance);
-	col.normal = (col.point - position).normal();
-	col.color = color;
+	col.normal = normal;
 
 	return col;
 }

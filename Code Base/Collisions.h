@@ -12,13 +12,13 @@ struct Material
 	float shininess;
 	float reflection;
 	float transmission;
+	float refractionIndex;
 };
 
 struct Collision {
 	Material material;
 	Vector3 point;
 	Vector3 normal;
-	Vector3 color;
 	float distance;
 };
 

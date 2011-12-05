@@ -21,15 +21,18 @@ public:
 	Vector3 origin;
 	Vector3 direction;
 	Vector3 color;
+	float distance;
+	float mediumRefraction;
+	bool insideSphere;
 
 	Ray(const Vector3& o, const Vector3& d);
 	Ray(const Vector3& o, const Vector3& d, int n);
 	~Ray();
 
-	Collision getFirstCollision(const list<Sphere>& scene);
-	Vector3 cast(const list<Sphere>& scene, const list<Light>& lights, int depth);
-	Vector3 castPath(const list<Sphere>& scene, const list<Light>& lights, int depth);
-	bool castFeeler(const list<Sphere>& scene, const Light& light);
+	Collision getFirstCollision(const list<Object*>& scene);
+	Vector3 cast(const list<Object*>& scene, const list<Light>& lights, int depth);
+	Vector3 castPath(const list<Object*>& scene, const list<Light>& lights, int depth);
+	bool castFeeler(const list<Object*>& scene, const Light& light);
 
 private:
 	int depth;

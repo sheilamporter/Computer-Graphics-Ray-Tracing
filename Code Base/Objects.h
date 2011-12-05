@@ -39,7 +39,7 @@ public:
 
 	void setMaterial(const Material& mat);
 
-	Collision collideWithRay(const Ray& ray) const; // override this for per-object-type collision with ray
+	virtual Collision collideWithRay(const Ray& ray) const = 0; // override this for per-object-type collision with ray
 };
 
 class Sphere: public Object
@@ -58,6 +58,19 @@ public:
     
 	Collision collideWithRay(const Ray& ray) const;
         
+};
+
+class Plane: public Object
+{
+public:
+	Vector3 normal;
+	float width;
+	float height;
+
+	Plane(const Vector3& point, const Vector3& norm);
+	Plane(const Vector3& point, const Vector3& norm, float x, float y);
+	
+	Collision collideWithRay(const Ray& ray) const;
 };
 
 #endif

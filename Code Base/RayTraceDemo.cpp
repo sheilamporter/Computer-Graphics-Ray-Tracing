@@ -66,27 +66,39 @@ void drawScene(void)
 
 void setupScene(void)
 {
-	Sphere s(Vector3(0.0f, 0.0f, 10.0f), 1.0f);
+	Sphere* s = new Sphere(Vector3(0.0f, 0.0f, 10.0f), 1.0f);
 	Material red;
 	red.ambient.set(0.5f, 0.0f, 0.0f);
 	red.diffuse.set(0.8f, 0.0f, 0.0f);
-	red.specular.set(0.9f, 0.9f, 0.9f);
+	red.specular.set(0.0f, 0.0f, 0.0f);
 	red.emittance.set(0.0f, 0.9f, 0.9f);
 	red.shininess = 30;
 	red.reflection = 1.0f;
-	s.setMaterial(red);
+	red.transmission = 0.5f;
+	red.refractionIndex = 0.2f;
+	s->setMaterial(red);
 	scene->addObject(s);
 
-	Sphere two(Vector3(0.0f, 1.5f, 14.0f), 0.5f);
+	Sphere* two = new Sphere(Vector3(0.0f, 1.5f, 10.0f), 0.5f);
 	Material blue;
 	blue.ambient.set(0.0f, 0.0f, 0.5f);
 	blue.diffuse.set(0.0f, 0.0f, 0.8f);
-	blue.specular.set(0.9f, 0.9f, 0.9f);
+	blue.specular.set(0.0f, 0.0f, 0.0f);
 	blue.emittance.set(0.2f, 0.2f, 0.2f);
 	blue.shininess = 20;
 	blue.reflection = 1.0f;
-	two.setMaterial(blue);
+	two->setMaterial(blue);
 	scene->addObject(two);
+
+	Plane* plane = new Plane(Vector3(0.0f, 0.0f, 30.0f), Vector3(0.0f, 0.0f, -1.0f), 10.0f, 10.0f);
+	Material planeMat;
+	planeMat.ambient.set(0.4f, 0.4f, 0.4f);
+	planeMat.diffuse.set(0.4f, 0.4f, 0.4f);
+	planeMat.specular.set(0.0f, 0.0f, 0.0f);
+	planeMat.shininess = 0;
+	planeMat.reflection = 0.0f;
+	plane->setMaterial(planeMat);
+	//scene->addObject(plane);
 
 	Light light;
 	light.color.set(1.0f, 1.0f, 1.0f);
