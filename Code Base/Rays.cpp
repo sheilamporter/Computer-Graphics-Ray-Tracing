@@ -120,18 +120,20 @@ Vector3 Ray::cast(const list<Object*>& scene, const list<Light>& lights, int dep
 				color += reflectColor * (reflect.distance < distanceDropOff ? 1.0f : 1.0f / (reflect.distance - distanceDropOff))  * col.material.reflection;
 			}
 
-			if (col.material.transmission > 0.0f)
+			/*if (col.material.transmission > 0.0f)
 			{
 				float c1 = (direction * col.normal) * -1.0f;
 				float n = mediumRefraction / col.material.refractionIndex;
 				float c2 = sqrt( 1 - pow(n,2) * (1 - pow(c1, 2)));
 				Vector3 dir = (direction * n) + (col.normal * (n * c1 - c2));
 				Ray refract(col.point, dir);
-				refract.insideSphere = true;
+				if(!insideSphere) {
+					refract.insideSphere = true;
+				}
 				refract.mediumRefraction = col.material.refractionIndex;
 				Vector3 refractColor = refract.cast(scene, lights, depth-1);
 				color += refractColor * col.material.transmission;
-			}
+			}*/
 		}
 
 		return color;

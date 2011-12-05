@@ -113,7 +113,7 @@ void testRaySphereCollide()
 	assert(col.distance < 0.0f);
 
 	sphere = Sphere(Vector3(0.0f, 0.0f, 0.0f), 1.0f);
-	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
+	ray = Ray(Vector3(-0.5f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
 	ray.insideSphere = true;
 
 	col = sphere.collideWithRay(ray);

@@ -85,15 +85,28 @@ Collision Sphere::collideWithRay(const Ray& ray) const
 	// Current collision based on: http://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html
 	Collision col;
 
-	if(ray.insideSphere)
+	if((position - ray.origin).magnitude() == radius && ray.insideSphere)
 	{
 		Vector3 half = (position - ray.origin).project(ray.direction);
-		float rest = pow(radius,2) - (position - (ray.origin + half)).magnitude();
-		float full = half.magnitude() + rest;
-		col.point = ray.origin + ray.direction * full;
-		col.distance = full;
-		col.material = material;
+		Vector3 halfPoint = ray.origin + half;
+		col.distance = half.magnitude() * 2.0f;
+		col.point = halfPoint + half;
 		col.normal = col.point - position;
+		col.material = material;
+
+		//float rest = pow(radius,2) - pow((position - (ray.origin + half)).magnitude(), 2);
+		//float full = half.magnitude() + rest;
+		//col.point = ray.origin + ray.direction * full;
+		//col.distance = full;
+		//col.material = material;
+		//col.normal = col.point - position;
+
+		//float dist = sqrt(pow(radius, 2) - pow((half - position).magnitude(), 2));
+		//float di1 = (half - ray.origin).magnitude() + dist;
+		//col.distance = di1;
+		//col.point = ray.origin + ray.direction * col.distance;
+		//col.normal = col.point - position;
+		//col.material = material;
 		return col;
 	}
 
