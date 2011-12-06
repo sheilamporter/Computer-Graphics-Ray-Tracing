@@ -119,21 +119,29 @@ Vector3 Ray::cast(const list<Object*>& scene, const list<Light>& lights, int dep
 				reflect.insideSphere = insideSphere;
 				Vector3 reflectColor = reflect.cast(scene, lights, depth-1);
 				color += reflectColor * (reflect.distance < distanceDropOff ? 1.0f : 1.0f / (reflect.distance - distanceDropOff))  * col.material.reflection;
-			} else {}
+			} else {} // This else must be here to step through the next if block with Visual Studio's debugging tools.
 
+			// Refraction complicates things a bit, so I'll document it here as best I can.
 			if (col.material.transmission > 0.0f)
 			{
+				// The following values are used to create the refracted ray direction.  This is pretty straightforward.
 				float c1 = (direction * col.normal) * -1.0f;
-				//float n = 1.0f / col.material.refractionIndex;
 				float n = mediumRefraction / (mediumRefraction == 1.0f ? col.material.refractionIndex : 1.0f);
 				float c2 = sqrt( 1 - pow(n,2) * (1 - pow(c1, 2)));
+				// If the ray is being refracted from inside the sphere, the normal must be flipped, since the ray must exit the sphere.
 				Vector3 norm = (insideSphere ? col.normal * -1.0f : col.normal);
 				Vector3 dir = (direction * n) + (norm * (n * c1 - c2));
 				Ray refract(col.point, dir);
+				// This flag, in addition to being used above, is used in the collision detection between spheres and rays.
+				// The collision detection needs to follow a special case when the ray starts inside the sphere.
+				// Refraction only works with spheres at this time.
 				refract.insideSphere = !insideSphere;
+				// Have the ray record the current medium it's travelling in.
 				refract.mediumRefraction = col.material.refractionIndex;
+				// Standard ray-cast from here.
 				Vector3 refractColor = refract.cast(scene, lights, depth-1);
 				color += refractColor * col.material.transmission;
+				// Attenuate the color received to account for background color permeating through the surface.
 				color *= 0.5f;
 			} else {}
 		}

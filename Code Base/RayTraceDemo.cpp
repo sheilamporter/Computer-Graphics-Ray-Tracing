@@ -91,6 +91,15 @@ void setupRayTraceScene(void)
 	blue.shininess = 5;
 	blue.reflection = 0.5f;
 
+	Material glass;
+	glass.ambient.set(0.0f, 0.0f, 0.0f);
+	glass.diffuse.set(0.0f, 0.0f, 0.0f);
+	glass.specular.set(0.9f, 0.9f, 0.9f);
+	glass.shininess = 60;
+	glass.reflection = 0.9f;
+	glass.transmission = 0.9f;
+	glass.refractionIndex = 1.0f;
+
 	Sphere* s = new Sphere(Vector3(0.0f, 0.0f, 10.0f), 1.0f);
 	s->setMaterial(metal);
 	scene->addObject(s);
@@ -106,6 +115,10 @@ void setupRayTraceScene(void)
 	Sphere* four = new Sphere(Vector3(-0.5f, 1.5f, 11.0f), 0.4f);
 	four->setMaterial(metal);
 	scene->addObject(four);
+
+	Sphere* five = new Sphere(Vector3(-0.3f, 0.0f, 8.0f), 0.5f);
+	five->setMaterial(glass);
+	scene->addObject(five);
 
 	Plane* plane = new Plane(Vector3(0.0f, 0.0f, 30.0f), Vector3(0.0f, 0.0f, -1.0f), 10.0f, 10.0f);
 	Material planeMat;
@@ -162,7 +175,7 @@ void setupRefractionScene(void)
 
 void setupScene(void)
 {
-	setupRefractionScene();
+	setupRayTraceScene();
 }
 
 // Initialization routine.
