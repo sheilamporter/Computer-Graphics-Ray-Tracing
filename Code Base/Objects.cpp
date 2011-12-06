@@ -80,12 +80,18 @@ Sphere::~Sphere()
 {
 }
 
+bool approximately(float a, float b)
+{
+	return (fabs(a - b) < 0.001f);
+}
+
 Collision Sphere::collideWithRay(const Ray& ray) const
 {
 	// Current collision based on: http://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html
 	Collision col;
 
-	if((position - ray.origin).magnitude() == radius && ray.insideSphere)
+	float dt = (position - ray.origin).magnitude();
+	if(approximately(dt, radius) && ray.insideSphere)
 	{
 		Vector3 half = (position - ray.origin).project(ray.direction);
 		Vector3 halfPoint = ray.origin + half;

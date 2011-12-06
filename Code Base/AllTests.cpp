@@ -97,26 +97,27 @@ void testRaySphereCollide()
 {
 	Sphere sphere(Vector3(0.0f, 2.0f, 2.0f), 1.0f);
 	Ray ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
-
 	Collision col = sphere.collideWithRay(ray);
 	assert(col.distance < 0.0f);
 
 	sphere = Sphere(Vector3(1.0f, 2.0f, 3.0f), 1.0f);
 	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(1.0f, 1.9f, 3.1f));
-
 	col = sphere.collideWithRay(ray);
 
 	sphere = Sphere(Vector3(0.0f, 0.0f, 1.0f), 1.0f);
 	ray = Ray(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f));
-
 	col = sphere.collideWithRay(ray);
 	assert(col.distance < 0.0f);
 
 	sphere = Sphere(Vector3(0.0f, 0.0f, 0.0f), 1.0f);
-	ray = Ray(Vector3(-0.5f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f));
-	ray.insideSphere = true;
-
+	ray = Ray(Vector3(-0.5f, 0.0f, -1.0f), Vector3(0.0f, 0.0f, 1.0f));
 	col = sphere.collideWithRay(ray);
+	ray = Ray(col.point, ray.direction);
+	ray.insideSphere = true;
+	col = sphere.collideWithRay(ray);
+	Ray ray2 = Ray(Vector3(-0.5f, 0.0f, 2.0f), Vector3(0.0f, 0.0f, -1.0f));
+	Collision col2 = sphere.collideWithRay(ray2);
+	//assert(col.point == col2.point);
 	//assert(col.distance < 0.0f);
 }
 
