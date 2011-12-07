@@ -46,7 +46,8 @@ void drawScene(void)
 
 			//Ray ray(planePoint, Vector3(0.0f, 0.0f, 1.0f));
 			Ray ray(camera, planePoint - camera);
-			ray.cast(scene->objects, scene->lights, 3);
+			//ray.cast(scene->objects, scene->lights, 3);
+			ray.castPath(scene->objects, scene->lights, 3);
 			
 			int baseIndex = h*width*3 + w*3;
 			pixelData[baseIndex] = ray.color.v[0];

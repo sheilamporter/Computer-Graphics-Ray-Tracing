@@ -116,3 +116,20 @@ Vector3 crossProduct(const Vector3 a, const Vector3 b)
     
     return v;
 }
+
+Vector3 randomUnitInHemisphere(const Vector3& normal)
+{
+	float x = (float) rand() / (float) RAND_MAX;
+	if (rand() % 2 == 0)
+		x *= 1;
+	float y = (float) rand() / (float) RAND_MAX;
+	if (rand() % 2 == 0)
+		y *= 1;
+	float z = (float) rand() / (float) RAND_MAX;
+	if (rand() % 2 == 0)
+		z *= 1;
+	Vector3 vec = Vector3(x,y,z).normal();
+	if (normal * vec < 0)
+		vec *= -1;
+	return vec;
+}

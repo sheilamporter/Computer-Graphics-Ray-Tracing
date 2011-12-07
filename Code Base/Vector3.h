@@ -30,5 +30,6 @@ public:
 };
 
 Vector3 crossProduct(const Vector3& a, const Vector3& b);
+Vector3 randomUnitInHemisphere(const Vector3& normal);
 
 #endif
