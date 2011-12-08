@@ -185,31 +185,43 @@ void setupRefractionScene(void)
 
 void setupPathTraceScene(void)
 {
-	Material red;
-	red.ambient.set(0.0f, 0.0f, 0.5f);
-	red.diffuse.set(0.0f, 0.0f, 0.8f);
-	red.specular.set(0.0f, 0.0f, 0.0f);
-	red.emittance.set(0.0f, 0.0f, 0.6f);
-	red.shininess = 30;
-	red.reflection = 0.3f;
-	red.transmission = 1.0f;
-	red.refractionIndex = 2.0f;
-
 	Material blue;
-	blue.ambient.set(0.5f, 0.5f, 0.5f);
-	blue.diffuse.set(0.8f, 0.8f, 0.8f);
+	blue.ambient.set(0.0f, 0.0f, 0.5f);
+	blue.diffuse.set(0.0f, 0.0f, 0.8f);
 	blue.specular.set(0.0f, 0.0f, 0.0f);
-	blue.emittance.set(0.3f, 0.3f, 0.3f);
-	blue.shininess = 5;
+	blue.emittance.set(0.2f, 0.2f, 0.8f);
+	blue.shininess = 30;
 	blue.reflection = 1.0f;
+	blue.transmission = 1.0f;
+	blue.refractionIndex = 2.0f;
 
-	Sphere* one = new Sphere(Vector3(-1.2f, 0.0f, 10.0f), 1.0f);
-	one->setMaterial(blue);
+	Material white;
+	white.ambient.set(0.5f, 0.5f, 0.5f);
+	white.diffuse.set(0.8f, 0.8f, 0.8f);
+	white.specular.set(0.0f, 0.0f, 0.0f);
+	white.emittance.set(0.8f, 0.8f, 0.8f);
+	white.shininess = 5;
+	white.reflection = 1.0f;
+
+	Material green;
+	green.ambient.set(0.0f, 0.5f, 0.1f);
+	green.diffuse.set(0.0f, 0.8f, 0.2f);
+	green.specular.set(0.0f, 0.0f, 0.0f);
+	green.emittance.set(0.3f, 0.3f, 0.3f);
+	green.shininess = 5;
+	green.reflection = 1.0f;
+
+	Sphere* one = new Sphere(Vector3(-1.2f, -0.1f, 10.0f), 0.8f);
+	one->setMaterial(white);
 	scene->addObject(one);
 
-	Sphere* two = new Sphere(Vector3(1.2f, 0.0f, 10.0f), 1.0f);
-	two->setMaterial(red);
+	Sphere* two = new Sphere(Vector3(1.0f, -0.5f, 10.0f), 1.0f);
+	two->setMaterial(blue);
 	scene->addObject(two);
+
+	Sphere* three = new Sphere(Vector3(0.3f, 1.0f, 13.0f), 1.2f);
+	three->setMaterial(green);
+	scene->addObject(three);
 
 	Light light;
 	light.color.set(1.0f, 1.0f, 1.0f);
