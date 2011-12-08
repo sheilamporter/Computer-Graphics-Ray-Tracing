@@ -5,8 +5,6 @@
 #include "Objects.h"
 #include "Collisions.h"
 
-#define PATHS_PER_POINT 10
-
 using namespace std;
 
 Ray::Ray(const Vector3& o, const Vector3& d)
@@ -79,6 +77,7 @@ Vector3 Ray::cast(const list<Object*>& scene, const list<Light>& lights, int dep
 	{
 		distance = col.distance;
 		// for each light, case a feeler ray to see if there should be shadow
+		color += col.material.emittance;
 		list<Light>::const_iterator itr = lights.begin();
 		for( ; itr != lights.end(); itr++)
 		{
@@ -157,6 +156,68 @@ Vector3 Ray::cast(const list<Object*>& scene, const list<Light>& lights, int dep
 
 Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int depth)
 {
+
+	Collision col = getFirstCollision(scene);
+
+	// if there is a collision
+	if(col.distance > 0.0f)
+	{
+		distance = col.distance;
+		// for each light, case a feeler ray to see if there should be shadow
+		list<Light>::const_iterator itr = lights.begin();
+		for( ; itr != lights.end(); itr++)
+		{
+			// compute the normal to the light
+			Vector3 toLight = ((*itr).position - col.point).normal();
+			Ray feeler(col.point, toLight);
+			bool feelerHit = feeler.castFeeler(scene, (*itr));
+				
+			// Ambient component of lighting.
+			color += col.material.ambient.scale((*itr).color);
+			// If there's an obstruction, the only affect of this light is it's ambient.
+			if(feelerHit) 
+			{
+				continue;
+			}
+			else
+			{
+				// The following is an appoximation of Phong's lighting model.
+				// Compute the angles between the light direction and: the view; the normal.
+				float normAngle = toLight * col.normal;
+				//float specAngle = (toLight*-1.0f).reflect(col.normal) * direction;
+				float specAngle = ((toLight + (direction * -1.0f)) * 0.5f).normal() * col.normal;
+
+				// Diffuse component of lighting.
+				color += col.material.diffuse.scale((*itr).color) * normAngle;
+
+				// Specular component of lighting.
+				if(specAngle > 0.0f)
+					color += col.material.specular.scale((*itr).color) * pow(specAngle, col.material.shininess);
+			}
+		}
+
+		if (depth > 0)
+		{
+			if (col.material.reflection > 0.0f && !insideSphere)
+			{
+				float distanceDropOff = 30.0f;
+				Vector3 dir = randomUnitInHemisphere(col.normal);
+				Ray reflect(col.point, dir);
+				reflect.insideSphere = insideSphere;
+				Vector3 reflectColor = reflect.castPath(scene, lights, depth-1);
+				color += reflectColor * (reflect.distance < distanceDropOff ? 1.0f : 1.0f / (reflect.distance - distanceDropOff))  * col.material.reflection;
+			} else {} // This else must be here to step through the next if block with Visual Studio's debugging tools.
+
+		}
+
+		return color;
+	}
+	
+	color.set(0.0f,0.0f,0.0f);
+	return color;
+
+	//other stuff
+	/*
 	Collision col = getFirstCollision(scene);
 
 	if (col.distance > 0.0f)
@@ -177,8 +238,6 @@ Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int
 			// Ambient component of lighting.
 			color += col.material.ambient.scale((*itr).color);
 
-			// Emittance of object
-			color += col.material.emittance;
 			// If there's an obstruction, the only affect of this light is it's ambient.
 			if(feelerHit) 
 			{
@@ -209,9 +268,10 @@ Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int
 			reflect.insideSphere = insideSphere;
 			Vector3 reflectColor = reflect.castPath(scene, lights, depth-1);
 			//color += reflectColor * reflect.attenuation;// * (reflect.distance < distanceDropOff ? 1.0f : 1.0f / (reflect.distance - distanceDropOff))  * col.material.emittance;
-			float cosOmega = reflect.direction * col.normal;
-			Vector3 bdrf = col.material.diffuse * cosOmega;
-			color = col.material.emittance + (bdrf * (reflectColor * bdrf));
+			//float cosOmega = reflect.direction * col.normal;
+			//Vector3 bdrf = col.material.reflection * cosOmega;
+			//color += bdrf * cosOmega * reflectColor;
+			color += reflectColor * col.material.reflection;
 		}
 
 		return color;
@@ -219,7 +279,7 @@ Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int
 
 	color.set(0.0f,0.0f,0.0f);
 	return color;
-
+	*/
 }
 
 bool Ray::castFeeler(const list<Object*>& scene, const Light& light)
