@@ -58,11 +58,14 @@ void pathCast(void)
 		}
 	}
 
+	glutPostRedisplay();
+
 }
 
 // Drawing (display) routine.
 void drawScene(void)
 {
+	cout << "drawing" << endl;
 	// Clear screen to background color.
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
