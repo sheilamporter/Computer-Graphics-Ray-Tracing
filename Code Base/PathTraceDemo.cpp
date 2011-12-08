@@ -284,7 +284,7 @@ int main(int argc, char **argv)
 	glutInitWindowPosition(100, 100); 
    
 	// Create OpenGL window with title.
-	glutCreateWindow("Ray Tracing Demo");
+	glutCreateWindow("Path Tracing Demo");
    
 	// Initialize.
 	setup(); 

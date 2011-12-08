@@ -5,7 +5,7 @@
 #include "Objects.h"
 #include "Collisions.h"
 
-#define PATHS_PER_POINT 15
+#define PATHS_PER_POINT 10
 
 using namespace std;
 
@@ -162,6 +162,9 @@ Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int
 	if (col.distance > 0.0f)
 	{
 		distance = col.distance;
+		// Emittance of object
+		color += col.material.emittance;
+		attenuation = direction * (col.normal * -1.0f);
 		// for each light, case a feeler ray to see if there should be shadow
 		list<Light>::const_iterator itr = lights.begin();
 		for( ; itr != lights.end(); itr++)
@@ -173,6 +176,9 @@ Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int
 				
 			// Ambient component of lighting.
 			color += col.material.ambient.scale((*itr).color);
+
+			// Emittance of object
+			color += col.material.emittance;
 			// If there's an obstruction, the only affect of this light is it's ambient.
 			if(feelerHit) 
 			{
@@ -197,42 +203,15 @@ Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int
 
 		if (depth > 0)
 		{
-			if (col.material.reflection > 0.0f && !insideSphere)
-			{
-				float distanceDropOff = 30.0f;
-				for (int i = 0; i < PATHS_PER_POINT; i++)
-				{
-					Vector3 dir = randomUnitInHemisphere(col.normal);
-					Ray reflect(col.point, dir);
-					reflect.insideSphere = insideSphere;
-					Vector3 reflectColor = reflect.cast(scene, lights, depth-1);
-					color += reflectColor * (reflect.distance < distanceDropOff ? 1.0f : 1.0f / (reflect.distance - distanceDropOff))  * col.material.reflection;
-				}
-			} else {} // This else must be here to step through the next if block with Visual Studio's debugging tools.
-
-			// Refraction complicates things a bit, so I'll document it here as best I can.
-			if (col.material.transmission > 0.0f)
-			{
-				// The following values are used to create the refracted ray direction.  This is pretty straightforward.
-				float c1 = (direction * col.normal) * -1.0f;
-				float n = mediumRefraction / (mediumRefraction == 1.0f ? col.material.refractionIndex : 1.0f);
-				float c2 = sqrt( 1 - pow(n,2) * (1 - pow(c1, 2)));
-				// If the ray is being refracted from inside the sphere, the normal must be flipped, since the ray must exit the sphere.
-				Vector3 norm = (insideSphere ? col.normal * -1.0f : col.normal);
-				Vector3 dir = (direction * n) + (norm * (n * c1 - c2));
-				Ray refract(col.point, dir);
-				// This flag, in addition to being used above, is used in the collision detection between spheres and rays.
-				// The collision detection needs to follow a special case when the ray starts inside the sphere.
-				// Refraction only works with spheres at this time.
-				refract.insideSphere = !insideSphere;
-				// Have the ray record the current medium it's travelling in.
-				refract.mediumRefraction = col.material.refractionIndex;
-				// Standard ray-cast from here.
-				Vector3 refractColor = refract.cast(scene, lights, depth-1);
-				color += refractColor * col.material.transmission;
-				// Attenuate the color received to account for background color permeating through the surface.
-				color *= 0.5f;
-			} else {}
+			float distanceDropOff = 30.0f;
+			Vector3 dir = randomUnitInHemisphere(col.normal);
+			Ray reflect(col.point, dir);
+			reflect.insideSphere = insideSphere;
+			Vector3 reflectColor = reflect.castPath(scene, lights, depth-1);
+			//color += reflectColor * reflect.attenuation;// * (reflect.distance < distanceDropOff ? 1.0f : 1.0f / (reflect.distance - distanceDropOff))  * col.material.emittance;
+			float cosOmega = reflect.direction * col.normal;
+			Vector3 bdrf = col.material.diffuse * cosOmega;
+			color = col.material.emittance + (bdrf * (reflectColor * bdrf));
 		}
 
 		return color;

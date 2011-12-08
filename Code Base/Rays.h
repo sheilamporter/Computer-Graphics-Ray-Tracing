@@ -23,6 +23,7 @@ public:
 	Vector3 color;
 	float distance;
 	float mediumRefraction;
+	float attenuation;
 	bool insideSphere;
 
 	Ray(const Vector3& o, const Vector3& d);
