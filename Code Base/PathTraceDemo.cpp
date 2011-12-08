@@ -74,141 +74,32 @@ void drawScene(void)
 
 }
 
-void setupRayTraceScene(void)
-{
-	Material metal;
-	metal.ambient.set(0.2f, 0.2f, 0.2f);
-	metal.diffuse.set(0.4f, 0.4f, 0.4f);
-	metal.specular.set(0.8f, 0.8f, 0.8f);
-	metal.shininess = 80;
-	metal.reflection = 0.8f;
-
-	Material red;
-	red.ambient.set(0.5f, 0.0f, 0.0f);
-	red.diffuse.set(0.8f, 0.0f, 0.0f);
-	red.specular.set(0.1f, 0.1f, 0.1f);
-	red.emittance.set(0.0f, 0.9f, 0.9f);
-	red.shininess = 30;
-	red.reflection = 0.3f;
-	red.transmission = 0.8f;
-	red.refractionIndex = 1.5f;
-
-	Material blue;
-	blue.ambient.set(0.0f, 0.0f, 0.5f);
-	blue.diffuse.set(0.0f, 0.0f, 0.8f);
-	blue.specular.set(0.0f, 0.0f, 0.0f);
-	blue.emittance.set(0.2f, 0.2f, 0.2f);
-	blue.shininess = 5;
-	blue.reflection = 0.5f;
-
-	Material glass;
-	glass.ambient.set(0.0f, 0.0f, 0.0f);
-	glass.diffuse.set(0.0f, 0.0f, 0.0f);
-	glass.specular.set(0.9f, 0.9f, 0.9f);
-	glass.shininess = 60;
-	glass.reflection = 0.9f;
-	glass.transmission = 0.9f;
-	glass.refractionIndex = 1.0f;
-
-	Sphere* s = new Sphere(Vector3(0.0f, 0.0f, 10.0f), 1.0f);
-	s->setMaterial(metal);
-	scene->addObject(s);
-
-	Sphere* two = new Sphere(Vector3(0.0f, 1.5f, 10.0f), 0.5f);
-	two->setMaterial(red);
-	scene->addObject(two);
-
-	Sphere* three = new Sphere(Vector3(1.5f, 0.0f, 9.0f), 0.6f);
-	three->setMaterial(blue);
-	scene->addObject(three);
-
-	Sphere* four = new Sphere(Vector3(-0.5f, 1.5f, 11.0f), 0.4f);
-	four->setMaterial(metal);
-	scene->addObject(four);
-
-	Sphere* five = new Sphere(Vector3(-0.3f, 0.0f, 8.0f), 0.5f);
-	five->setMaterial(glass);
-	scene->addObject(five);
-
-	Plane* plane = new Plane(Vector3(0.0f, 0.0f, 30.0f), Vector3(0.0f, 0.0f, -1.0f), 10.0f, 10.0f);
-	Material planeMat;
-	planeMat.ambient.set(0.4f, 0.4f, 0.4f);
-	planeMat.diffuse.set(0.4f, 0.4f, 0.4f);
-	planeMat.specular.set(0.0f, 0.0f, 0.0f);
-	planeMat.shininess = 0;
-	planeMat.reflection = 0.0f;
-	plane->setMaterial(planeMat);
-	//scene->addObject(plane);
-
-	Light light;
-	light.color.set(1.0f, 1.0f, 1.0f);
-	light.position.set(100.0f, 100.0f, 5.0f);
-	scene->addLight(light);
-
-	light.position.set(20.0f, 20.0f, 30.0f);
-	//scene->addLight(light);
-}
-
-void setupRefractionScene(void)
-{
-	Material red;
-	red.ambient.set(0.5f, 0.0f, 0.0f);
-	red.diffuse.set(0.8f, 0.0f, 0.0f);
-	red.specular.set(0.1f, 0.1f, 0.1f);
-	red.emittance.set(0.0f, 0.9f, 0.9f);
-	red.shininess = 30;
-	red.reflection = 0.3f;
-	red.transmission = 1.0f;
-	red.refractionIndex = 2.0f;
-
-	Material blue;
-	blue.ambient.set(0.0f, 0.0f, 0.5f);
-	blue.diffuse.set(0.0f, 0.0f, 0.8f);
-	blue.specular.set(0.0f, 0.0f, 0.0f);
-	blue.emittance.set(0.2f, 0.2f, 0.2f);
-	blue.shininess = 5;
-	blue.reflection = 0.5f;
-
-	Sphere* one = new Sphere(Vector3(-0.5f, 0.0f, 12.0f), 0.5f);
-	one->setMaterial(blue);
-	scene->addObject(one);
-
-	Sphere* two = new Sphere(Vector3(0.0f, 0.0f, 10.0f), 1.0f);
-	two->setMaterial(red);
-	scene->addObject(two);
-
-	Light light;
-	light.color.set(1.0f, 1.0f, 1.0f);
-	light.position.set(100.0f, 100.0f, 5.0f);
-	scene->addLight(light);
-}
-
 void setupPathTraceScene(void)
 {
-	Material red;
-	red.ambient.set(0.0f, 0.0f, 0.5f);
-	red.diffuse.set(0.0f, 0.0f, 0.8f);
-	red.specular.set(0.0f, 0.0f, 0.0f);
-	red.emittance.set(0.0f, 0.0f, 0.6f);
-	red.shininess = 30;
-	red.reflection = 0.3f;
-	red.transmission = 1.0f;
-	red.refractionIndex = 2.0f;
-
 	Material blue;
-	blue.ambient.set(0.5f, 0.5f, 0.5f);
-	blue.diffuse.set(0.8f, 0.8f, 0.8f);
+	blue.ambient.set(0.0f, 0.0f, 0.5f);
+	blue.diffuse.set(0.0f, 0.0f, 0.8f);
 	blue.specular.set(0.0f, 0.0f, 0.0f);
-	blue.emittance.set(0.3f, 0.3f, 0.3f);
-	blue.shininess = 5;
+	blue.emittance.set(0.0f, 0.0f, 0.9f);
+	blue.shininess = 30;
 	blue.reflection = 1.0f;
+	blue.transmission = 1.0f;
+	blue.refractionIndex = 2.0f;
+
+	Material white;
+	white.ambient.set(0.5f, 0.5f, 0.5f);
+	white.diffuse.set(0.8f, 0.8f, 0.8f);
+	white.specular.set(0.0f, 0.0f, 0.0f);
+	white.emittance.set(0.8f, 0.8f, 0.8f);
+	white.shininess = 5;
+	white.reflection = 1.0f;
 
 	Sphere* one = new Sphere(Vector3(-1.2f, 0.0f, 10.0f), 1.0f);
-	one->setMaterial(blue);
+	one->setMaterial(white);
 	scene->addObject(one);
 
 	Sphere* two = new Sphere(Vector3(1.2f, 0.0f, 10.0f), 1.0f);
-	two->setMaterial(red);
+	two->setMaterial(blue);
 	scene->addObject(two);
 
 	Light light;
@@ -220,7 +111,6 @@ void setupPathTraceScene(void)
 void setupScene(void)
 {
 	setupPathTraceScene();
-	//setupRayTraceScene();
 }
 
 // Initialization routine.

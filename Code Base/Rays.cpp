@@ -205,7 +205,7 @@ Vector3 Ray::castPath(const list<Object*>& scene, const list<Light>& lights, int
 				Ray reflect(col.point, dir);
 				reflect.insideSphere = insideSphere;
 				Vector3 reflectColor = reflect.castPath(scene, lights, depth-1);
-				color += reflectColor * (reflect.distance < distanceDropOff ? 1.0f : 1.0f / (reflect.distance - distanceDropOff))  * col.material.reflection;
+				color += reflectColor * col.material.reflection;
 			} else {} // This else must be here to step through the next if block with Visual Studio's debugging tools.
 
 		}
