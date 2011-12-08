@@ -82,7 +82,7 @@ void setupPathTraceScene(void)
 	blue.ambient.set(0.0f, 0.0f, 0.5f);
 	blue.diffuse.set(0.0f, 0.0f, 0.8f);
 	blue.specular.set(0.0f, 0.0f, 0.0f);
-	blue.emittance.set(0.0f, 0.0f, 0.9f);
+	blue.emittance.set(0.2f, 0.2f, 0.9f);
 	blue.shininess = 30;
 	blue.reflection = 1.0f;
 	blue.transmission = 1.0f;
@@ -96,11 +96,19 @@ void setupPathTraceScene(void)
 	white.shininess = 5;
 	white.reflection = 1.0f;
     
-	Sphere* one = new Sphere(Vector3(-1.2f, 0.0f, 10.0f), 1.0f);
+	Material green;
+	green.ambient.set(0.0f, 0.5f, 0.1f);
+	green.diffuse.set(0.0f, 0.8f, 0.2f);
+	green.specular.set(0.0f, 0.0f, 0.0f);
+	green.emittance.set(0.2f, 0.8f, 0.2f);
+	green.shininess = 5;
+	green.reflection = 1.0f;
+
+	Sphere* one = new Sphere(Vector3(-1.0f, -0.1f, 10.0f), 0.8f);
 	one->setMaterial(white);
 	scene->addObject(one);
 
-	Sphere* two = new Sphere(Vector3(1.2f, 0.0f, 10.0f), 1.0f);
+	Sphere* two = new Sphere(Vector3(1.1f, -0.5f, 10.0f), 1.0f);\
 	two->setMaterial(blue);
 	scene->addObject(two);
 
