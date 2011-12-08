@@ -58,6 +58,8 @@ void pathCast(void)
 		}
 	}
 
+	glutPostRedisplay();
+
 }
 
 // Drawing (display) routine.
@@ -93,7 +95,7 @@ void setupPathTraceScene(void)
 	white.emittance.set(0.8f, 0.8f, 0.8f);
 	white.shininess = 5;
 	white.reflection = 1.0f;
-
+    
 	Sphere* one = new Sphere(Vector3(-1.2f, 0.0f, 10.0f), 1.0f);
 	one->setMaterial(white);
 	scene->addObject(one);
@@ -101,6 +103,10 @@ void setupPathTraceScene(void)
 	Sphere* two = new Sphere(Vector3(1.2f, 0.0f, 10.0f), 1.0f);
 	two->setMaterial(blue);
 	scene->addObject(two);
+
+	Sphere* three = new Sphere(Vector3(0.3f, 1.0f, 13.0f), 1.2f);
+	three->setMaterial(green);
+	scene->addObject(three);
 
 	Light light;
 	light.color.set(1.0f, 1.0f, 1.0f);
