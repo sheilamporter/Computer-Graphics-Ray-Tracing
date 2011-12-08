@@ -65,7 +65,6 @@ void pathCast(void)
 // Drawing (display) routine.
 void drawScene(void)
 {
-	cout << "drawing" << endl;
 	// Clear screen to background color.
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -192,7 +191,7 @@ void setupPathTraceScene(void)
 	blue.ambient.set(0.0f, 0.0f, 0.5f);
 	blue.diffuse.set(0.0f, 0.0f, 0.8f);
 	blue.specular.set(0.0f, 0.0f, 0.0f);
-	blue.emittance.set(0.2f, 0.2f, 0.8f);
+	blue.emittance.set(0.2f, 0.2f, 0.9f);
 	blue.shininess = 30;
 	blue.reflection = 1.0f;
 	blue.transmission = 1.0f;
@@ -210,15 +209,15 @@ void setupPathTraceScene(void)
 	green.ambient.set(0.0f, 0.5f, 0.1f);
 	green.diffuse.set(0.0f, 0.8f, 0.2f);
 	green.specular.set(0.0f, 0.0f, 0.0f);
-	green.emittance.set(0.3f, 0.3f, 0.3f);
+	green.emittance.set(0.2f, 0.8f, 0.2f);
 	green.shininess = 5;
 	green.reflection = 1.0f;
 
-	Sphere* one = new Sphere(Vector3(-1.2f, -0.1f, 10.0f), 0.8f);
+	Sphere* one = new Sphere(Vector3(-1.0f, -0.1f, 10.0f), 0.8f);
 	one->setMaterial(white);
 	scene->addObject(one);
 
-	Sphere* two = new Sphere(Vector3(1.0f, -0.5f, 10.0f), 1.0f);
+	Sphere* two = new Sphere(Vector3(1.1f, -0.5f, 10.0f), 1.0f);
 	two->setMaterial(blue);
 	scene->addObject(two);
 
